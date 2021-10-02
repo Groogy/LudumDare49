@@ -12,12 +12,11 @@ func _on_simulation() -> void:
 
 func _simulate_cell(cell: Vector2, depth := 0) -> void:
 	if depth >= MAX_DEPTH: return
-	var manager = get_parent().get_parent()
-	if manager.can_have_more_water(cell.x, cell.y+1):
+	if Root.map_manager.can_have_more_water(cell.x, cell.y+1):
 		_simulate_gravity(cell)
-	if manager.can_have_more_water(cell.x + 1, cell.y):
+	if Root.map_manager.can_have_more_water(cell.x + 1, cell.y):
 		_simulate_flow(cell, 1, depth)
-	if manager.can_have_more_water(cell.x - 1, cell.y):
+	if Root.map_manager.can_have_more_water(cell.x - 1, cell.y):
 		_simulate_flow(cell, -1, depth)
 
 

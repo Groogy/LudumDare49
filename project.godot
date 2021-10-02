@@ -14,6 +14,10 @@ config/name="LudumDare49"
 run/main_scene="res://scenes/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Root="*res://singletons/Root.gd"
+
 [debug]
 
 settings/stdout/print_fps=true
