@@ -2,6 +2,7 @@ extends TileMap
 
 
 enum TileID {
+	EMPTY = -1
 	UNDERGROUND,
 	SURFACE,
 	LEFT_SLOPE,
@@ -45,9 +46,38 @@ func fill(x: int) -> void:
 		set_cell(x+1, surface, TileID.UNDERGROUND)
 
 
-func find_surface(x: int) -> int:
+func empty(x: int) -> void:
+	var surface = find_surface(x, true)
+	var new_surface = surface + 1
+	set_cell(x, surface, TileID.EMPTY)
+	set_cell(x, new_surface, TileID.SURFACE)
+	if is_filled(x-1, surface):
+		if is_partial(x-2, surface):
+			set_cell(x-1, surface, TileID.EMPTY)
+			set_cell(x-2, surface, TileID.EMPTY)
+			set_cell(x-1, new_surface, TileID.SURFACE)
+			set_cell(x-2, new_surface, TileID.SURFACE)
+		else:
+			set_cell(x-1, surface, TileID.RIGHT_SLOPE)
+	elif is_partial(x-1, surface):
+		set_cell(x-1, new_surface, TileID.SURFACE)
+		set_cell(x-1, surface, TileID.EMPTY)
+	if is_filled(x+1, surface):
+		if is_partial(x+2, surface):
+			set_cell(x+1, surface, TileID.EMPTY)
+			set_cell(x+2, surface, TileID.EMPTY)
+			set_cell(x+1, new_surface, TileID.SURFACE)
+			set_cell(x+2, new_surface, TileID.SURFACE)
+		else:
+			set_cell(x+1, surface, TileID.LEFT_SLOPE)
+	elif is_partial(x+1, surface):
+		set_cell(x+1, new_surface, TileID.SURFACE)
+		set_cell(x+1, surface, TileID.EMPTY)
+
+
+func find_surface(x: int, include_partial: bool = false) -> int:
 	for y in range(-bounds.end.y, -bounds.position.y):
-		if is_filled(x, y):
+		if (include_partial and not is_empty(x, y)) or is_filled(x, y):
 			return y
 	return -int(bounds.position.y) # There's a gaping hole in the map?
 

@@ -18,3 +18,18 @@ func will_dyke_have_support(cell: Vector2) -> bool:
 		return false
 		
 	return true
+
+
+func can_dig_channel(cell: Vector2) -> bool:
+	var manager := Root.map_manager
+	if manager.terrain.is_empty(cell.x, cell.y):
+		return false
+	if not manager.is_empty(cell.x-1, cell.y-1) \
+	or not manager.is_empty(cell.x, cell.y-1) \
+	or not manager.is_empty(cell.x+1, cell.y-1):
+		return false
+	return true
+
+
+func dig_channel(cell: Vector2) -> void:
+	Root.map_manager.empty_terrain_cell(cell)
