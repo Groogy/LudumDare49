@@ -1,5 +1,10 @@
 extends Node
 
+
+const FloodBarrierScene = preload("res://scenes/FloodBarrierPart.tscn")
+const WindpumpScene = preload("res://scenes/WindpumpPart.tscn")
+
+
 func can_raise_land(cell: Vector2) -> bool:
 	if not Root.map_manager.is_empty(cell.x, cell.y, false):
 		return false
@@ -44,4 +49,32 @@ func can_construct_flood_barrier(cell: Vector2) -> bool:
 	return true
 
 func construct_flood_barrier(cell: Vector2) -> void:
-	Root.map_manager.entities.create_flood_barrier(cell)
+	var barrier := FloodBarrierScene.instance()
+	barrier.set_cell(cell)
+	var entity: Entity = Root.map_manager.entities.fetch_entity_at(cell.x, cell.y + 1)
+	if not entity:
+		entity = Root.map_manager.entities.create_entity()
+	entity.add_child(barrier)
+
+
+func can_construct_pipe(cell: Vector2) -> bool:
+	return false
+	
+	
+func construct_pipe(cell: Vector2) -> void:
+	pass
+	
+
+func can_construct_pump(cell: Vector2) -> bool:
+	var manager := Root.map_manager
+	if not manager.is_empty(cell.x, cell.y):
+		return false
+	if not manager.terrain.is_filled(cell.x, cell.y+1):
+		return false
+	return true
+	
+	
+func construct_pump(cell: Vector2) -> void:
+	var pump := WindpumpScene.instance()
+	pump.set_cell(cell)
+	var entity = Root.map_manager.entities.create_entity([pump])

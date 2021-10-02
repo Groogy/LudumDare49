@@ -44,28 +44,52 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RaiseLand" type="Button" parent="MarginContainer/ConstructionButtons"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/ConstructionButtons"]
 margin_left = 73.0
-margin_right = 153.0
+margin_right = 77.0
+margin_bottom = 30.0
+
+[node name="RaiseLand" type="Button" parent="MarginContainer/ConstructionButtons"]
+margin_left = 81.0
+margin_right = 161.0
 margin_bottom = 30.0
 text = "Raise Land"
 
 [node name="LowerLand" type="Button" parent="MarginContainer/ConstructionButtons"]
-margin_left = 157.0
-margin_right = 241.0
+margin_left = 165.0
+margin_right = 249.0
 margin_bottom = 30.0
 text = "Lower Land"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/ConstructionButtons"]
+margin_left = 253.0
+margin_right = 257.0
+margin_bottom = 30.0
+
 [node name="FloodBarrier" type="Button" parent="MarginContainer/ConstructionButtons"]
-margin_left = 245.0
-margin_right = 339.0
+margin_left = 261.0
+margin_right = 355.0
 margin_bottom = 30.0
 text = "Flood Barrier"
+
+[node name="Pump" type="Button" parent="MarginContainer/ConstructionButtons"]
+margin_left = 359.0
+margin_right = 408.0
+margin_bottom = 30.0
+text = "Pump"
+
+[node name="Pipe" type="Button" parent="MarginContainer/ConstructionButtons"]
+margin_left = 412.0
+margin_right = 452.0
+margin_bottom = 30.0
+text = "Pipe"
 
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/Unselect" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_unselect"]
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/RaiseLand" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_raise_land"]
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/LowerLand" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_lower_land"]
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/FloodBarrier" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_construct_flood_barrier"]
+[connection signal="pressed" from="MarginContainer/ConstructionButtons/Pump" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_construct_pump"]
+[connection signal="pressed" from="MarginContainer/ConstructionButtons/Pipe" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="on_construct_pipe"]
