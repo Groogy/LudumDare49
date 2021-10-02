@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 
 
 var cell_x := 0 setget set_cell_x
