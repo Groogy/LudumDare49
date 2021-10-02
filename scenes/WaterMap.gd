@@ -47,7 +47,7 @@ func _convert_id_to_water_level(id: int) -> int:
 
 
 func _convert_water_level_to_id(level: int, x: int, y: int) -> int:
-	var id := level-1
-	if id == MAX_WATER_LEVEL and has_water(x, y-1): # Check if we are not the surface
-		id = FULL_WATER_TILE_ID
-	return id
+	if level == MAX_WATER_LEVEL and has_water(x, y-1): # Check if we are not the surface
+		return FULL_WATER_TILE_ID
+	else:
+		return level-1

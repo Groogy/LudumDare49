@@ -256,7 +256,7 @@ script = ExtResource( 3 )
 
 [node name="InjectWaterTimer" type="Timer" parent="WaterLogic"]
 process_mode = 0
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
 [connection signal="timeout" from="WaterLogic/InjectWaterTimer" to="WaterLogic" method="_on_inject_water"]
