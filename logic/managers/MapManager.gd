@@ -36,4 +36,4 @@ func snap_to_grid(pos: Vector2) -> Vector2:
 
 # Modification
 func fill_terrain_cell(cell: Vector2) -> void:
-	_terrain.fill(cell.x, cell.y)
+	_terrain.fill(cell.x)
