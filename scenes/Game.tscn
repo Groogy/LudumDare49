@@ -36,6 +36,6 @@ script = ExtResource( 6 )
 [node name="ToolManager" type="Node" parent="."]
 script = ExtResource( 7 )
 
-[node name="TopBarInterface" parent="." instance=ExtResource( 5 )]
-margin_top = -599.0
-margin_bottom = -535.0
+[node name="Interface" type="CanvasLayer" parent="."]
+
+[node name="TopBarInterface" parent="Interface" instance=ExtResource( 5 )]
