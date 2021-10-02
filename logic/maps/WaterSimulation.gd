@@ -1,7 +1,7 @@
 extends Node
 
 
-const MAX_DEPTH = 2
+const MAX_DEPTH = 64
 
 
 func _on_simulation() -> void:
@@ -10,20 +10,25 @@ func _on_simulation() -> void:
 		_simulate_cell(cell)
 
 
-func _simulate_cell(cell: Vector2, depth := 0) -> void:
+func _simulate_cell(cell: Vector2, depth := 0, flow_dir := 0) -> void:
 	if depth >= MAX_DEPTH: return
-	if Root.map_manager.can_have_more_water(cell.x, cell.y+1):
-		_simulate_gravity(cell)
-	if Root.map_manager.can_have_more_water(cell.x + 1, cell.y):
+	var manager = Root.map_manager
+	if manager.can_have_more_water(cell.x, cell.y+1):
+		_simulate_gravity(cell, depth)
+	if flow_dir >= 0 and manager.can_have_more_water(cell.x + 1, cell.y):
 		_simulate_flow(cell, 1, depth)
-	if Root.map_manager.can_have_more_water(cell.x - 1, cell.y):
+	if flow_dir <= 0 and manager.can_have_more_water(cell.x - 1, cell.y):
 		_simulate_flow(cell, -1, depth)
 
 
-func _simulate_gravity(cell: Vector2) -> void:
+func _simulate_gravity(cell: Vector2, depth := 0) -> void:
 	var map := get_parent()
-	map.add_water_level_at(cell.x, cell.y, -1)
-	map.add_water_level_at(cell.x, cell.y+1, 1)
+	var value = map.get_water_level_at(cell.x, cell.y)
+	if value <= 0: return
+	map.set_water_level_at(cell.x, cell.y, 0)
+	map.add_water_level_at(cell.x, cell.y+1, value)
+	if Root.map_manager.can_have_more_water(cell.x, cell.y+1):
+		_simulate_cell(cell + Vector2(0, 1), depth+1)
 
 
 func _simulate_flow(cell: Vector2, dir: int, depth := 0) -> void:
@@ -34,4 +39,4 @@ func _simulate_flow(cell: Vector2, dir: int, depth := 0) -> void:
 	if my_level > 1 and my_level >= target_level:
 		map.add_water_level_at(cell.x, cell.y, -1)
 		map.add_water_level_at(target.x, target.y, 1)
-		_simulate_cell(cell, depth)
+		_simulate_cell(target, depth+1, dir)
