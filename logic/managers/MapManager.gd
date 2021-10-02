@@ -17,3 +17,7 @@ func can_have_more_water(x: int, y: int) -> bool:
 	return 	is_within_bounds(x, y) \
 		and (_terrain.is_empty(x, y) or _terrain.is_partial(x, y)) \
 		and _water.get_water_level_at(x, y) < _water.get_max_water_level()
+
+
+func snap_to_grid(pos: Vector2) -> Vector2:
+	return _terrain.map_to_world(_terrain.world_to_map(pos))
