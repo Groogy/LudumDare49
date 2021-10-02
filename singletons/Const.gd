@@ -1,0 +1,27 @@
+extends Node
+
+enum PipeOrientations {
+	HORIZONTAL = 0
+	VERTICAL = 1
+	LEFT_UP = 4
+	RIGHT_UP = 5
+	LEFT_DOWN = 6
+	RIGHT_DOWN = 7
+}
+
+enum TileID {
+	EMPTY = -1
+	UNDERGROUND,
+	SURFACE,
+	LEFT_SLOPE,
+	RIGHT_SLOPE
+}
+
+enum Tool { 
+	NONE
+	RAISE_LAND
+	LOWER_LAND
+	FLOOD_BARRIER
+	PIPE
+	PUMP
+}

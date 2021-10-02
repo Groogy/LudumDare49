@@ -77,4 +77,4 @@ func can_construct_pump(cell: Vector2) -> bool:
 func construct_pump(cell: Vector2) -> void:
 	var pump := WindpumpScene.instance()
 	pump.set_cell(cell)
-	var entity = Root.map_manager.entities.create_entity([pump])
+	Root.map_manager.entities.create_entity([pump])

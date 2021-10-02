@@ -1,17 +1,8 @@
 tool
 extends TileMap
 
-
-enum TileID {
-	EMPTY = -1
-	UNDERGROUND,
-	SURFACE,
-	LEFT_SLOPE,
-	RIGHT_SLOPE
-}
-
-const FILLED_TILE_ID = [TileID.UNDERGROUND, TileID.SURFACE]
-const PARTIAL_TILE_ID = [TileID.LEFT_SLOPE, TileID.RIGHT_SLOPE]
+const FILLED_TILE_ID = [Const.TileID.UNDERGROUND, Const.TileID.SURFACE]
+const PARTIAL_TILE_ID = [Const.TileID.LEFT_SLOPE, Const.TileID.RIGHT_SLOPE]
 
 
 var map_bounds := Rect2(0, 0, 0, 0)
@@ -32,49 +23,49 @@ func is_filled(x: int, y: int) -> bool:
 func fill(x: int) -> void:
 	var surface = find_surface(x)
 	var new_surface = surface - 1
-	set_cell(x, surface, TileID.UNDERGROUND)
-	set_cell(x, new_surface, TileID.SURFACE)
+	set_cell(x, surface, Const.TileID.UNDERGROUND)
+	set_cell(x, new_surface, Const.TileID.SURFACE)
 	if is_empty(x-1, new_surface) and is_filled(x-1, surface):
-		set_cell(x-1, new_surface, TileID.LEFT_SLOPE)
-		set_cell(x-1, surface, TileID.UNDERGROUND)
+		set_cell(x-1, new_surface, Const.TileID.LEFT_SLOPE)
+		set_cell(x-1, surface, Const.TileID.UNDERGROUND)
 	elif is_partial(x-1, new_surface):
-		set_cell(x-1, new_surface, TileID.SURFACE)
-		set_cell(x-1, surface, TileID.UNDERGROUND)
+		set_cell(x-1, new_surface, Const.TileID.SURFACE)
+		set_cell(x-1, surface, Const.TileID.UNDERGROUND)
 	if is_empty(x+1, new_surface) and is_filled(x+1, surface):
-		set_cell(x+1, new_surface, TileID.RIGHT_SLOPE)
-		set_cell(x+1, surface, TileID.UNDERGROUND)
+		set_cell(x+1, new_surface, Const.TileID.RIGHT_SLOPE)
+		set_cell(x+1, surface, Const.TileID.UNDERGROUND)
 	elif is_partial(x+1, new_surface):
-		set_cell(x+1, new_surface, TileID.SURFACE)
-		set_cell(x+1, surface, TileID.UNDERGROUND)
+		set_cell(x+1, new_surface, Const.TileID.SURFACE)
+		set_cell(x+1, surface, Const.TileID.UNDERGROUND)
 
 
 func empty(x: int) -> void:
 	var surface = find_surface(x, true)
 	var new_surface = surface + 1
-	set_cell(x, surface, TileID.EMPTY)
-	set_cell(x, new_surface, TileID.SURFACE)
+	set_cell(x, surface, Const.TileID.EMPTY)
+	set_cell(x, new_surface, Const.TileID.SURFACE)
 	if is_filled(x-1, surface):
 		if is_partial(x-2, surface):
-			set_cell(x-1, surface, TileID.EMPTY)
-			set_cell(x-2, surface, TileID.EMPTY)
-			set_cell(x-1, new_surface, TileID.SURFACE)
-			set_cell(x-2, new_surface, TileID.SURFACE)
+			set_cell(x-1, surface, Const.TileID.EMPTY)
+			set_cell(x-2, surface, Const.TileID.EMPTY)
+			set_cell(x-1, new_surface, Const.TileID.SURFACE)
+			set_cell(x-2, new_surface, Const.TileID.SURFACE)
 		else:
-			set_cell(x-1, surface, TileID.RIGHT_SLOPE)
+			set_cell(x-1, surface, Const.TileID.RIGHT_SLOPE)
 	elif is_partial(x-1, surface):
-		set_cell(x-1, new_surface, TileID.SURFACE)
-		set_cell(x-1, surface, TileID.EMPTY)
+		set_cell(x-1, new_surface, Const.TileID.SURFACE)
+		set_cell(x-1, surface, Const.TileID.EMPTY)
 	if is_filled(x+1, surface):
 		if is_partial(x+2, surface):
-			set_cell(x+1, surface, TileID.EMPTY)
-			set_cell(x+2, surface, TileID.EMPTY)
-			set_cell(x+1, new_surface, TileID.SURFACE)
-			set_cell(x+2, new_surface, TileID.SURFACE)
+			set_cell(x+1, surface, Const.TileID.EMPTY)
+			set_cell(x+2, surface, Const.TileID.EMPTY)
+			set_cell(x+1, new_surface, Const.TileID.SURFACE)
+			set_cell(x+2, new_surface, Const.TileID.SURFACE)
 		else:
-			set_cell(x+1, surface, TileID.LEFT_SLOPE)
+			set_cell(x+1, surface, Const.TileID.LEFT_SLOPE)
 	elif is_partial(x+1, surface):
-		set_cell(x+1, new_surface, TileID.SURFACE)
-		set_cell(x+1, surface, TileID.EMPTY)
+		set_cell(x+1, new_surface, Const.TileID.SURFACE)
+		set_cell(x+1, surface, Const.TileID.EMPTY)
 
 
 func find_surface(x: int, include_partial: bool = false) -> int:
@@ -82,9 +73,3 @@ func find_surface(x: int, include_partial: bool = false) -> int:
 		if (include_partial and not is_empty(x, y)) or is_filled(x, y):
 			return y
 	return -int(map_bounds.position.y) # There's a gaping hole in the map?
-
-func get_full_tile_id() -> int:
-	return TileID.UNDERGROUND
-
-func get_surface_tile_id() -> int:
-	return TileID.SURFACE
