@@ -6,10 +6,10 @@
 
 [node name="Game" type="Node2D"]
 
-[node name="TerrainMap" parent="." instance=ExtResource( 1 )]
-
 [node name="WaterMap" parent="." instance=ExtResource( 3 )]
 inject_water_pos = Vector2( 0, -2 )
+
+[node name="TerrainMap" parent="." instance=ExtResource( 1 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
