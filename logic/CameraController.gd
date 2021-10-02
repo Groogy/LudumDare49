@@ -21,6 +21,8 @@ func _handle_drag_input(event: InputEventMouse) -> void:
 		_is_dragged = false
 	elif _is_dragged and event is InputEventMouseMotion:
 		position -= event.relative
+		position.x = clamp(position.x, limit_left, limit_right)
+		position.y = clamp(position.y, limit_top, limit_bottom)
 		
 
 func _handle_key_input(event: InputEventKey) -> void:
@@ -34,3 +36,5 @@ func _handle_key_input(event: InputEventKey) -> void:
 	elif event.is_action("camera_down"):
 		vector = Vector2(0, 1)
 	position += vector * scrolling_speed
+	position.x = clamp(position.x, limit_left, limit_right)
+	position.y = clamp(position.y, limit_top, limit_bottom)
