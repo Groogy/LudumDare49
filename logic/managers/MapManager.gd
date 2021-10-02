@@ -1,39 +1,39 @@
 extends Node2D
 
-onready var _water = $WaterMap
-onready var _terrain = $TerrainMap
+onready var water = $WaterMap
+onready var terrain = $TerrainMap
 
 
 # Queries
 func is_within_bounds(x: int, y: int) -> bool:
-	return _terrain.bounds.has_point(Vector2(x, -y))
+	return terrain.bounds.has_point(Vector2(x, -y))
 
 
-func is_empty(x: int, y: int) -> bool:
+func is_empty(x: int, y: int, include_partial: bool = true) -> bool:
 	return is_within_bounds(x, y) \
-		and _terrain.get_cell(x, y) == -1 \
-		and _water.get_cell(x, y) == -1
+		and (terrain.is_empty(x, y) or (not include_partial and terrain.is_partial(x, y))) \
+		and water.get_water_level_at(x, y) <= 0
 
 
 func can_have_more_water(x: int, y: int) -> bool:
 	return 	is_within_bounds(x, y) \
-		and (_terrain.is_empty(x, y) or _terrain.is_partial(x, y)) \
-		and _water.get_water_level_at(x, y) < _water.get_max_water_level()
+		and (terrain.is_empty(x, y) or terrain.is_partial(x, y)) \
+		and water.get_water_level_at(x, y) < water.get_max_water_level()
 
 
 # Conversion
 func map_to_world(cell: Vector2) -> Vector2:
-	return _terrain.map_to_world(cell)
+	return terrain.map_to_world(cell)
 
 
 func world_to_map(pos: Vector2) -> Vector2:
-	return _terrain.world_to_map(pos)
+	return terrain.world_to_map(pos)
 
 
 func snap_to_grid(pos: Vector2) -> Vector2:
-	return _terrain.map_to_world(_terrain.world_to_map(pos))
+	return terrain.map_to_world(terrain.world_to_map(pos))
 
 
 # Modification
 func fill_terrain_cell(cell: Vector2) -> void:
-	_terrain.fill(cell.x)
+	terrain.fill(cell.x)
