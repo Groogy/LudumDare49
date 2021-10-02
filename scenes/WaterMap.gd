@@ -36,6 +36,8 @@ func set_water_level_at(x: int, y: int, level: int) -> void:
 		level = MAX_WATER_LEVEL
 	var id := _convert_water_level_to_id(level, x, y)
 	set_cell(x, y, id)
+	if level > 0 and get_water_level_at(x, y+1) == MAX_WATER_LEVEL:
+		set_cell(x, y+1, FULL_WATER_TILE_ID)
 
 
 func add_water_level_at(x: int, y: int, val: int) -> void:
