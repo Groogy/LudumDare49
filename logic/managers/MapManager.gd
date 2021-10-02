@@ -6,7 +6,7 @@ onready var _terrain = $TerrainMap
 
 # Queries
 func is_within_bounds(x: int, y: int) -> bool:
-	return x >= 0 and y <= 0 # TODO ADD UPPER BOUND
+	return _terrain.bounds.has_point(Vector2(x, -y))
 
 
 func is_empty(x: int, y: int) -> bool:

@@ -5,6 +5,8 @@ const SURFACE_TILE_ID = 1
 const UNDERGROUND_TILE_ID = 0
 const PARTIAL_TILE_ID = [2, 3]
 
+var bounds := Rect2(0, 0, 0, 0)
+
 
 func is_empty(x: int, y: int) -> bool:
 	return get_cell(x, y) == -1
