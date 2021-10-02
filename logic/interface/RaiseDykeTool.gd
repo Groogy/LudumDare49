@@ -3,7 +3,7 @@ extends Node2D
 
 var cell_under_mouse := Vector2(0, 0)
 
-var _valid_last_render := false
+var _can_build_last_frame := false
 
 
 func _process(_delta: float) -> void:
@@ -13,14 +13,19 @@ func _process(_delta: float) -> void:
 		update()
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("game_select") and _can_build_last_frame:
+		Root.construction_manager.raise_dyke(cell_under_mouse)
+
+
 func _draw() -> void:
-	_valid_last_render = Root.map_manager.can_build_dyke(cell_under_mouse)
+	_can_build_last_frame = Root.construction_manager.can_raise_dyke(cell_under_mouse)
 	
 	var color := Color.green
-	if not _valid_last_render:
+	if not _can_build_last_frame:
 		color = Color.red
 	draw_rect(Rect2(Vector2(0, 0), Vector2(16, 16)), color, false, 1.5, true)
 
 
 func _needs_redraw() -> bool:
-	return _valid_last_render != Root.map_manager.can_build_dyke(cell_under_mouse)
+	return _can_build_last_frame != Root.construction_manager.can_raise_dyke(cell_under_mouse)

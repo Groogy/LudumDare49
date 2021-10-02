@@ -24,4 +24,4 @@ func _generate_terrain() -> void:
 	var map: TileMap = get_parent()
 	map.clear()
 	for x in range(target_area.position.x, target_area.end.x):
-		map.set_cell(x, -1, 1) #Set a level playing field
+		map.fill(x, -1) #Set a level playing field

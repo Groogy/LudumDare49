@@ -21,11 +21,7 @@ func can_have_more_water(x: int, y: int) -> bool:
 		and _water.get_water_level_at(x, y) < _water.get_max_water_level()
 
 
-func can_build_dyke(cell: Vector2) -> bool:
-	return is_empty(cell.x, cell.y)
-
-
-# Coonversion
+# Conversion
 func map_to_world(cell: Vector2) -> Vector2:
 	return _terrain.map_to_world(cell)
 
@@ -36,3 +32,8 @@ func world_to_map(pos: Vector2) -> Vector2:
 
 func snap_to_grid(pos: Vector2) -> Vector2:
 	return _terrain.map_to_world(_terrain.world_to_map(pos))
+
+
+# Modification
+func fill_terrain_cell(cell: Vector2) -> void:
+	_terrain.fill(cell.x, cell.y)
