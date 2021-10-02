@@ -1,13 +1,13 @@
 extends Node
 
 
-enum Tool { NONE, RAISE_LAND, LOWER_LAND }
+enum Tool { NONE, RAISE_LAND, LOWER_LAND, FLOOD_BARRIER }
 
 
 var current_tool: int = Tool.NONE setget set_current_tool
 
 
-onready var _tools := [null, $RaiseLandTool, $LowerLandTool]
+onready var _tools := [null, $RaiseLandTool, $LowerLandTool, $FloodBarrierTool]
 
 
 func _ready() -> void:

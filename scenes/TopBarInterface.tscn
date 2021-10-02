@@ -59,6 +59,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="FloodBarrier" type="Button" parent="MarginContainer/ConstructionButtons"]
+margin_left = 245.0
+margin_right = 339.0
+margin_bottom = 30.0
+text = "Flood Barrier"
+
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/Unselect" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_unselect"]
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/RaiseLand" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_raise_land"]
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/LowerLand" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_lower_land"]
+[connection signal="pressed" from="MarginContainer/ConstructionButtons/FloodBarrier" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_construct_flood_barrier"]

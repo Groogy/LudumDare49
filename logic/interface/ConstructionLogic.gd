@@ -11,3 +11,7 @@ func _on_raise_land():
 
 func _on_lower_land():
 	Root.tool_manager.current_tool = Root.tool_manager.get_tool_flag("LOWER_LAND")
+
+
+func _on_construct_flood_barrier():
+	Root.tool_manager.current_tool = Root.tool_manager.get_tool_flag("FLOOD_BARRIER")

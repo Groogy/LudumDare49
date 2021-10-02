@@ -2,6 +2,7 @@ extends Node2D
 
 onready var water = $WaterMap
 onready var terrain = $TerrainMap
+onready var entities = $EntityManager
 
 
 # Queries
@@ -12,13 +13,15 @@ func is_within_bounds(x: int, y: int) -> bool:
 func is_empty(x: int, y: int, include_partial: bool = true) -> bool:
 	return is_within_bounds(x, y) \
 		and (terrain.is_empty(x, y) or (not include_partial and terrain.is_partial(x, y))) \
-		and water.get_water_level_at(x, y) <= 0
+		and water.get_water_level_at(x, y) <= 0 \
+		and entities.is_empty(x, y)
 
 
 func can_have_more_water(x: int, y: int) -> bool:
 	return 	is_within_bounds(x, y) \
 		and (terrain.is_empty(x, y) or terrain.is_partial(x, y)) \
-		and water.get_water_level_at(x, y) < water.get_max_water_level()
+		and water.get_water_level_at(x, y) < water.get_max_water_level() \
+		and not entities.is_water_blocked(x, y)
 
 
 # Conversion
