@@ -36,19 +36,29 @@ margin_bottom = 45.0
 [node name="ConstructionLogic" type="Node" parent="MarginContainer/ConstructionButtons"]
 script = ExtResource( 1 )
 
-[node name="RaiseDyke" type="Button" parent="MarginContainer/ConstructionButtons"]
-margin_right = 82.0
+[node name="Unselect" type="Button" parent="MarginContainer/ConstructionButtons"]
+margin_right = 69.0
 margin_bottom = 30.0
-text = "Raise Dyke"
-
-[node name="DigChannel" type="Button" parent="MarginContainer/ConstructionButtons"]
-margin_left = 86.0
-margin_right = 174.0
-margin_bottom = 30.0
-text = "Dig Channel"
+text = "Unselect"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="MarginContainer/ConstructionButtons/RaiseDyke" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_raise_dyke"]
-[connection signal="pressed" from="MarginContainer/ConstructionButtons/DigChannel" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_dig_channel"]
+[node name="RaiseLand" type="Button" parent="MarginContainer/ConstructionButtons"]
+margin_left = 73.0
+margin_right = 153.0
+margin_bottom = 30.0
+text = "Raise Land"
+
+[node name="LowerLand" type="Button" parent="MarginContainer/ConstructionButtons"]
+margin_left = 157.0
+margin_right = 241.0
+margin_bottom = 30.0
+text = "Lower Land"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="MarginContainer/ConstructionButtons/Unselect" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_unselect"]
+[connection signal="pressed" from="MarginContainer/ConstructionButtons/RaiseLand" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_raise_land"]
+[connection signal="pressed" from="MarginContainer/ConstructionButtons/LowerLand" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_lower_land"]

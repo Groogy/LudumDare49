@@ -5,7 +5,7 @@ var _can_build_last_frame := false
 
 
 func _draw() -> void:
-	_can_build_last_frame = Root.construction_manager.can_dig_channel(cell_under_mouse)
+	_can_build_last_frame = Root.construction_manager.can_lower_land(cell_under_mouse)
 	
 	var color := Color.green
 	if not _can_build_last_frame:
@@ -18,8 +18,8 @@ func can_build() -> bool:
 
 
 func build() -> void:
-	Root.construction_manager.dig_channel(cell_under_mouse)
+	Root.construction_manager.lower_land(cell_under_mouse)
 
 
 func _needs_redraw() -> bool:
-	return _can_build_last_frame != Root.construction_manager.can_dig_channel(cell_under_mouse)
+	return _can_build_last_frame != Root.construction_manager.can_lower_land(cell_under_mouse)
