@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://logic/ConstructionLogic.gd" type="Script" id=1]
+
+[node name="TopBarInterface" type="Panel"]
+margin_right = 1024.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResourcesInfo" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 1009.0
+margin_bottom = 49.0
+
+[node name="ConstructionButtons" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 1009.0
+margin_bottom = 49.0
+
+[node name="ConstructionLogic" type="Node" parent="MarginContainer/ConstructionButtons"]
+script = ExtResource( 1 )
+
+[node name="RaiseDyke" type="Button" parent="MarginContainer/ConstructionButtons"]
+margin_right = 82.0
+margin_bottom = 34.0
+text = "Raise Dyke"
+
+[node name="DigChannel" type="Button" parent="MarginContainer/ConstructionButtons"]
+margin_left = 86.0
+margin_right = 174.0
+margin_bottom = 34.0
+text = "Dig Channel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="MarginContainer/ConstructionButtons/RaiseDyke" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_raise_dyke"]
+[connection signal="pressed" from="MarginContainer/ConstructionButtons/DigChannel" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_dig_channel"]
