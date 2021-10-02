@@ -10,8 +10,8 @@ func is_on(x: int, y: int) -> bool:
 
 
 func set_cell(v: Vector2) -> void:
-	cell_x = v.x
-	cell_y = v.y
+	cell_x = int(v.x)
+	cell_y = int(v.y)
 	position = Root.map_manager.map_to_world(v)
 
 
