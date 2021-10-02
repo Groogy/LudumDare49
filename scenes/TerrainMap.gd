@@ -1,3 +1,4 @@
+tool
 extends TileMap
 
 
@@ -12,7 +13,8 @@ enum TileID {
 const FILLED_TILE_ID = [TileID.UNDERGROUND, TileID.SURFACE]
 const PARTIAL_TILE_ID = [TileID.LEFT_SLOPE, TileID.RIGHT_SLOPE]
 
-var bounds := Rect2(0, 0, 0, 0)
+
+var map_bounds := Rect2(0, 0, 0, 0)
 
 
 func is_empty(x: int, y: int) -> bool:
@@ -76,10 +78,10 @@ func empty(x: int) -> void:
 
 
 func find_surface(x: int, include_partial: bool = false) -> int:
-	for y in range(-bounds.end.y, -bounds.position.y):
+	for y in range(-map_bounds.end.y, -map_bounds.position.y):
 		if (include_partial and not is_empty(x, y)) or is_filled(x, y):
 			return y
-	return -int(bounds.position.y) # There's a gaping hole in the map?
+	return -int(map_bounds.position.y) # There's a gaping hole in the map?
 
 func get_full_tile_id() -> int:
 	return TileID.UNDERGROUND

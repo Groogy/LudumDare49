@@ -7,7 +7,7 @@ onready var entities = $EntityManager
 
 # Queries
 func is_within_bounds(x: int, y: int) -> bool:
-	return terrain.bounds.has_point(Vector2(x, -y))
+	return terrain.map_bounds.has_point(Vector2(x, -y))
 
 
 func is_empty(x: int, y: int, include_partial: bool = true) -> bool:
