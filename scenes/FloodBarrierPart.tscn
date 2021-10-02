@@ -3,9 +3,12 @@
 [ext_resource path="res://art/flood_barrier.png" type="Texture" id=1]
 [ext_resource path="res://logic/entities/FloodBarrierPart.gd" type="Script" id=2]
 
-[node name="FloodBarrierPart" type="Node2D"]
+[node name="FloodBarrierPart" type="Node2D" groups=[
+"flood_barrier",
+]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-offset = Vector2( 8, 4 )
+centered = false
+offset = Vector2( 0, -8 )

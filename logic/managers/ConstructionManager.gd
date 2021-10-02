@@ -3,6 +3,7 @@ extends Node
 
 const FloodBarrierScene = preload("res://scenes/FloodBarrierPart.tscn")
 const WindpumpScene = preload("res://scenes/WindpumpPart.tscn")
+const PipeScene = preload("res://scenes/PipePart.tscn")
 
 
 func can_raise_land(cell: Vector2) -> bool:
@@ -58,10 +59,24 @@ func construct_flood_barrier(cell: Vector2) -> void:
 
 
 func can_construct_pipe(cell: Vector2) -> bool:
-	return false
+	if not Root.map_manager.entities.is_empty(cell.x, cell.y):
+		return false
+		
+	var connection := false
+	connection = connection or Root.map_manager.entities.has_pump_at(cell.x, cell.y-1)
+	return connection
 	
 	
 func construct_pipe(cell: Vector2) -> void:
+	var connection: Entity = null
+	if Root.map_manager.entities.has_pump_at(cell.x, cell.y-1):
+		connection = Root.map_manager.entities.fetch_entity_at(cell.x, cell.y-1)
+		
+	if connection:
+		var pipe := PipeScene.instance()
+		pipe.orientation = Const.PipeOrientations.VERTICAL
+		pipe.set_cell(cell)
+		connection.add_child(pipe)
 	pass
 	
 
