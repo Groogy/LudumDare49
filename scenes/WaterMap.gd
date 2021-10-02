@@ -14,6 +14,10 @@ func _draw():
 		draw_circle(map_to_world(inject_water_pos) + cell_size / 2, cell_size.x / 2, Color.aqua)
 
 
+func get_max_water_level() -> int:
+	return MAX_WATER_LEVEL
+
+
 func has_water(x: int, y: int) -> bool:
 	return get_water_level_at(x, y) > 0
 
