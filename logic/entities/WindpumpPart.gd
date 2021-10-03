@@ -22,3 +22,9 @@ func _on_sucking() -> void:
 	var random = randi() % children.size()
 	if children[random] != self:
 		children[random].suck(modified)
+
+
+func get_rect() -> Rect2:
+	var rect = $Sprite.get_rect()
+	rect.position += position
+	return rect

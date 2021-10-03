@@ -3,7 +3,9 @@
 [ext_resource path="res://art/urban.png" type="Texture" id=1]
 [ext_resource path="res://logic/entities/UrbanSettlementPart.gd" type="Script" id=2]
 
-[node name="SettlementUrbanPart" type="Node2D"]
+[node name="SettlementUrbanPart" type="Node2D" groups=[
+"entity_part",
+]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

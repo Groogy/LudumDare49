@@ -3,6 +3,7 @@ extends Node2D
 
 
 const SettlementUrbanScene = preload("res://scenes/entities/SettlementUrbanPart.tscn")
+const SettlementNameScene = preload("res://scenes/entities/SettlementName.tscn")
 
 
 func _draw() -> void:
@@ -33,6 +34,9 @@ func build_start_settlement_parts(spot) -> Array:
 		part.cell_x = spot.x + x
 		part.cell_y = spot.y
 		parts.push_back(part)
+	var part = SettlementNameScene.instance()
+	part.position = parts.front().position
+	parts.push_back(part)
 	return parts
 
 func find_empty_spot() -> Vector2:

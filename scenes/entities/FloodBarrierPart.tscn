@@ -4,6 +4,7 @@
 [ext_resource path="res://logic/entities/FloodBarrierPart.gd" type="Script" id=2]
 
 [node name="FloodBarrierPart" type="Node2D" groups=[
+"entity_part",
 "flood_barrier",
 "player_constructed",
 ]]

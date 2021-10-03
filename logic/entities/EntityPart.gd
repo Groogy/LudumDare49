@@ -30,6 +30,10 @@ func set_cell_y(y: int) -> void:
 	position = Root.map_manager.map_to_world(Vector2(cell_x, cell_y))
 
 
+func get_rect() -> Rect2:
+	return Rect2(global_position, Vector2(16, 16))
+
+
 func destroy() -> void:
 	var parent = get_parent()
 	parent.remove_child(self)

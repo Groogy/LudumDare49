@@ -102,3 +102,9 @@ func connect_pipe(part: EntityPart) -> void:
 				if is_reverse: orientation = Const.PipeOrientations.RIGHT_DOWN
 				else: orientation = Const.PipeOrientations.LEFT_DOWN
 			part.orientation = orientation
+
+
+func get_rect() -> Rect2:
+	var rect = $Sprite.get_rect()
+	rect.position += position
+	return rect

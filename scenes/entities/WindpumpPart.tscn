@@ -4,6 +4,7 @@
 [ext_resource path="res://art/windpump.png" type="Texture" id=2]
 
 [node name="WindpumpPart" type="Node2D" groups=[
+"entity_part",
 "player_constructed",
 "pump",
 ]]
