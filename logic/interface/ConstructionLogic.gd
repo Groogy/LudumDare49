@@ -23,3 +23,7 @@ func on_construct_pipe():
 
 func _on_construct_pump():
 	Root.tool_manager.current_tool = Const.Tool.PUMP
+
+
+func _on_destroy():
+	Root.tool_manager.current_tool = Const.Tool.DESTROY

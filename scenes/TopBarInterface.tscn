@@ -87,9 +87,16 @@ margin_right = 452.0
 margin_bottom = 30.0
 text = "Pipe"
 
+[node name="Destroy" type="Button" parent="MarginContainer/ConstructionButtons"]
+margin_left = 456.0
+margin_right = 518.0
+margin_bottom = 30.0
+text = "Destroy"
+
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/Unselect" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_unselect"]
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/RaiseLand" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_raise_land"]
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/LowerLand" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_lower_land"]
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/FloodBarrier" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_construct_flood_barrier"]
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/Pump" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_construct_pump"]
 [connection signal="pressed" from="MarginContainer/ConstructionButtons/Pipe" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="on_construct_pipe"]
+[connection signal="pressed" from="MarginContainer/ConstructionButtons/Destroy" to="MarginContainer/ConstructionButtons/ConstructionLogic" method="_on_destroy"]

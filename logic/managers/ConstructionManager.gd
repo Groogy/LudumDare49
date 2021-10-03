@@ -87,3 +87,29 @@ func construct_pump(cell: Vector2) -> void:
 	var pump := WindpumpScene.instance()
 	pump.set_cell(cell)
 	Root.map_manager.entities.create_entity([pump])
+
+
+func can_destroy_entity_part_at(cell: Vector2) -> bool:
+	var entities = Root.map_manager.entities
+	var part = entities.fetch_part_at(cell.x, cell.y)
+	if not part:
+		return false
+	return true
+	#
+	#if part.is_in_group("flood_barrier"):
+	#	return can_destroy_flood_barrier(part)
+	#if part.is_in_group("pump"):
+	#	return can_destroy_pump(part)
+	#if part.is_in_group("pipe"):
+	#	return can_destroy_pipe(part)
+	#
+	#return false
+
+#func can_destroy_flood_barrier(part: EntityPart) -> bool:
+#	return part.is_top()
+
+
+func destroy_entity_part_at(cell: Vector2) -> void:
+	var entities = Root.map_manager.entities
+	var part = entities.fetch_part_at(cell.x, cell.y)
+	part.destroy()

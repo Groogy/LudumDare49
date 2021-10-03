@@ -29,3 +29,9 @@ func set_cell_y(y: int) -> void:
 	cell_y = y
 	position = Root.map_manager.map_to_world(Vector2(cell_x, cell_y))
 
+
+func destroy() -> void:
+	var parent = get_parent()
+	parent.remove_child(self)
+	parent.check_destroyed()
+	queue_free()

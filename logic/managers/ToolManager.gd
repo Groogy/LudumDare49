@@ -4,7 +4,7 @@ extends Node
 var current_tool: int = Const.Tool.NONE setget set_current_tool
 
 
-onready var _tools := [null, $RaiseLandTool, $LowerLandTool, $FloodBarrierTool, $PipeTool, $PumpTool]
+onready var _tools := [null, $RaiseLandTool, $LowerLandTool, $FloodBarrierTool, $PipeTool, $PumpTool, $DestroyTool]
 
 
 func _ready() -> void:
