@@ -1,10 +1,18 @@
 extends Camera2D
 
 
-export var scrolling_speed = 10.0
-
+export var scrolling_speed := 10.0
+export var start_pan_to_settlement := 3
 
 var _is_dragged := false
+
+
+func _ready() -> void:
+	var maps = Root.map_manager
+	position = maps.map_to_world(Vector2(0, maps.terrain.find_surface(0)))
+	var target = maps.entities.fetch_all_parts_of("urban").front().global_position
+	$StartTween.interpolate_property(self, "position", position, target, start_pan_to_settlement)
+	$StartTween.start()
 
 
 func _unhandled_input(event: InputEvent) -> void:
