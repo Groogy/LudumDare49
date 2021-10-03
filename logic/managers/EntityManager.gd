@@ -1,6 +1,12 @@
 extends Node2D
 
 
+func clear() -> void:
+	var children := get_children()
+	for child in children:
+		child.queue_free()
+
+
 func is_empty(x: int, y: int) -> bool:
 	for child in get_children():
 		if child.is_on(x, y):

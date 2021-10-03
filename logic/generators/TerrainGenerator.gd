@@ -12,11 +12,10 @@ func _draw() -> void:
 		draw_rect(Rect2(start, end-start), Color.blueviolet, false, 2.0, false)
 
 
-func generate_terrain() -> void:
+func generate() -> void:
 	var parent := get_parent()
 	var map: TileMap = parent.get_terrain_map()
 	if not map: return
-	map.clear()
 	map.map_bounds = parent.target_area
 	for i in 32:
 		for x in range(parent.target_area.position.x, parent.target_area.end.x):

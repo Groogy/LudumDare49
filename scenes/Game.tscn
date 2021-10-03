@@ -12,14 +12,6 @@
 
 [node name="Game" type="Node2D"]
 
-[node name="WorldGenerator" parent="." instance=ExtResource( 9 )]
-_terrain_map = NodePath("../MapManager/TerrainMap")
-_water_map = NodePath("../MapManager/WaterMap")
-_entities = NodePath("../MapManager/EntityManager")
-generation_seed = 1
-target_area = Rect2( 0, 0, 250, 64 )
-start_settlement_area = Rect2( 230, -33, 15, 1 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 limit_left = 0
@@ -52,3 +44,10 @@ script = ExtResource( 6 )
 [node name="Interface" type="CanvasLayer" parent="."]
 
 [node name="TopBarInterface" parent="Interface" instance=ExtResource( 5 )]
+
+[node name="WorldGenerator" parent="." instance=ExtResource( 9 )]
+_terrain_map = NodePath("../MapManager/TerrainMap")
+_water_map = NodePath("../MapManager/WaterMap")
+_entities = NodePath("../MapManager/EntityManager")
+target_area = Rect2( 0, 0, 250, 64 )
+start_settlement_area = Rect2( 210, -33, 25, 1 )
