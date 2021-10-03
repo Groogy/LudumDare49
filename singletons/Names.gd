@@ -113,6 +113,9 @@ const PossibleNames = [
 	"Drakendijk",
 	"Kikkerdorp",
 	"Steendijk",
+	"Klein Rif Barrière",
+	"Bijbelbelt-Op-Water",
+	"Duisterveen",
 ]
 	
 	
