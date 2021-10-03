@@ -44,9 +44,9 @@ func expand_settlement() -> void:
 		if part.cell_x <= left: left = part.cell_x-1
 		if part.cell_x >= right: right = part.cell_x+1
 	var valid = []
-	if Helpers.can_place_settlement_part_on(left, surface):
+	if Root.map_manager.can_place_settlement_part_on(left, surface):
 		valid.push_back(Vector2(left, surface))
-	if Helpers.can_place_settlement_part_on(right, surface):
+	if Root.map_manager.can_place_settlement_part_on(right, surface):
 		valid.push_back(Vector2(right, surface))
 	if valid.empty():
 		increase_multiplier()

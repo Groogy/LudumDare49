@@ -16,7 +16,6 @@ func _process(_delta: float) -> void:
 
 func set_multiplier(val: float) -> void:
 	multiplier = val
-	$Info/Container/Multiplier.text = "x%.1f" % multiplier
 
 
 func randomize_settlement_sprite() -> void:
@@ -31,7 +30,7 @@ func get_rect() -> Rect2:
 
 
 func generated_income() -> float:
-	return 0.1 * multiplier
+	return 0.5 * multiplier
 
 
 func generated_workers() -> int:
