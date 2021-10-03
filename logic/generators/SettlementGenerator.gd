@@ -35,7 +35,7 @@ func build_start_settlement_parts(spot) -> Array:
 		part.cell_y = spot.y
 		parts.push_back(part)
 	var part = SettlementNameScene.instance()
-	part.position = parts.front().position
+	part.settlement_name = "Roosdijk"
 	parts.push_back(part)
 	return parts
 
