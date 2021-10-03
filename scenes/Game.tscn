@@ -16,6 +16,9 @@
 _terrain_map = NodePath("../MapManager/TerrainMap")
 _water_map = NodePath("../MapManager/WaterMap")
 _entities = NodePath("../MapManager/EntityManager")
+generation_seed = 1
+target_area = Rect2( 0, 0, 250, 64 )
+start_settlement_area = Rect2( 230, -33, 15, 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
