@@ -39,13 +39,12 @@ func has_free_pipe_at(x: int, y: int) -> bool:
 
 
 func can_connect_pipe(x: int, y: int) -> bool:
-	var connection := false
-	connection = connection or has_pump_at(x, y-1)
-	connection = connection or has_free_pipe_at(x, y-1)
-	connection = connection or has_free_pipe_at(x, y+1)
-	connection = connection or has_free_pipe_at(x-1, y)
-	connection = connection or has_free_pipe_at(x+1, y)
-	return connection
+	var connection := find_pipe_connection(x, y)
+	if not connection:
+		return false
+	if connection.get_parent().get_child_count() > 16:
+		return false
+	return true
 
 
 func find_pipe_connection(x: int, y: int) -> EntityPart:

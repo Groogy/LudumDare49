@@ -72,8 +72,7 @@ func construct_pipe(cell: Vector2) -> void:
 	var neighbor = Root.map_manager.entities.find_pipe_connection(cell.x, cell.y)
 	neighbor.get_parent().add_child(pipe)
 	pipe.connect_pipe(neighbor)
-	pass
-	
+
 
 func can_construct_pump(cell: Vector2) -> bool:
 	var manager := Root.map_manager

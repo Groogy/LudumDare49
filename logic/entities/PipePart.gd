@@ -3,6 +3,28 @@ extends "EntityPart.gd"
 var orientation: int = Const.PipeOrientations.HORIZONTAL setget set_orientation
 var connections := []
 
+
+func suck(strength: int):
+	var to_check = [
+		Vector2(0, -1), Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0),
+		Vector2(0, 1)
+	]
+	var water = Root.map_manager.water
+	var entities = Root.map_manager.entities
+	var valid := []
+	for check in to_check:
+		var coord = get_cell() + check
+		if water.get_water_level_at(coord.x, coord.y) <= 0:
+			continue
+		if entities.has_pipe_at(coord.x, coord.y):
+			continue
+		valid.append(coord)
+	if valid.empty(): return
+	var random = valid[randi() % valid.size()]
+	strength = clamp(strength, 0, water.get_water_level_at(random.x, random.y))
+	water.add_water_level_at(random.x, random.y, -strength)
+
+
 func set_orientation(val: int) -> void:
 	assert(Const.PipeOrientations.values().has(val))
 	orientation = val

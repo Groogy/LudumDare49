@@ -7,8 +7,15 @@
 "pump",
 ]]
 script = ExtResource( 1 )
+sucking_power = 48
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 centered = false
 offset = Vector2( 0, -16 )
+
+[node name="SuckingTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="SuckingTimer" to="." method="_on_sucking"]

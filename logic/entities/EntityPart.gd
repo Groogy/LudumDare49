@@ -10,6 +10,10 @@ func is_on(x: int, y: int) -> bool:
 	return cell_x == x and cell_y == y
 
 
+func get_cell() -> Vector2:
+	return Vector2(cell_x, cell_y)
+
+
 func set_cell(v: Vector2) -> void:
 	cell_x = int(v.x)
 	cell_y = int(v.y)
