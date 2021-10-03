@@ -5,6 +5,7 @@
 
 [node name="FloodBarrierPart" type="Node2D" groups=[
 "flood_barrier",
+"player_constructed",
 ]]
 script = ExtResource( 2 )
 

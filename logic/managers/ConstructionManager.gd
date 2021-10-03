@@ -94,6 +94,8 @@ func can_destroy_entity_part_at(cell: Vector2) -> bool:
 	var part = entities.fetch_part_at(cell.x, cell.y)
 	if not part:
 		return false
+	if not part.is_in_group("player_constructed"):
+		return false
 	return true
 	#
 	#if part.is_in_group("flood_barrier"):

@@ -5,6 +5,7 @@
 
 [node name="PipePart" type="Node2D" groups=[
 "pipe",
+"player_constructed",
 ]]
 script = ExtResource( 1 )
 
