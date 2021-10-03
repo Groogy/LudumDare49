@@ -36,7 +36,14 @@ func calc_bounding_box() -> Rect2:
 			continue
 		box = box.merge(child.get_rect())
 	return box
-	
+
+func get_all_parts_in(group: String) -> Array:
+	var parts := []
+	for child in get_children():
+		if child.is_in_group(group):
+			parts.push_back(child)
+	return parts
+
 
 func check_destroyed() -> void:
 	if get_child_count() <= 0:

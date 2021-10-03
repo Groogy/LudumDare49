@@ -3,6 +3,7 @@ extends Node2D
 
 const SettlementUrbanScene = preload("res://scenes/entities/SettlementUrbanPart.tscn")
 const SettlementNameScene = preload("res://scenes/entities/SettlementName.tscn")
+const SettlementGrowthScene = preload("res://scenes/entities/SettlementGrowth.tscn")
 
 const PartsLookup = {
 	"urban": SettlementUrbanScene
@@ -39,6 +40,8 @@ func build_functional_parts() -> Array:
 	var part = SettlementNameScene.instance()
 	part.settlement_name = Names.generate_name()
 	parts.push_back(part)
+	part = SettlementGrowthScene.instance()
+	parts.push_back(part)
 	return parts
 
 
@@ -56,7 +59,4 @@ func find_empty_spot() -> Vector2:
 	return Vector2(x, y)
 	
 func can_place_on(x: int, y: int) -> bool:
-	var parent := get_parent()
-	var terrain = parent.get_terrain_map()
-	var entities = parent.get_entities()
-	return entities.is_empty(x, y) and terrain.is_empty(x, y) and terrain.is_filled(x, y+1)
+	return Root.map_manager.can_place_settlement_part_on(x, y)

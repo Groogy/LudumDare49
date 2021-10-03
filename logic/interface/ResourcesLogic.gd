@@ -10,6 +10,6 @@ func _process(_delta: float) -> void:
 	money_value.text = str(Root.resources.money)
 	workers_value.text = str(Root.resources.available_workers)
 	
-	income_value.text = "+%1.f" % Root.resources.income
+	income_value.text = "+%.1f" % Root.resources.income
 	workers_growth_value.text = "+%d" % Root.resources.workers_growth
 	

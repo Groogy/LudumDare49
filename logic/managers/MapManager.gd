@@ -24,6 +24,10 @@ func can_have_more_water(x: int, y: int) -> bool:
 		and not entities.is_water_blocked(x, y)
 
 
+func can_place_settlement_part_on(x: int, y: int) -> bool:
+	return entities.is_empty(x, y) and terrain.is_empty(x, y) and terrain.is_filled(x, y+1)
+
+
 # Conversion
 func map_to_world(cell: Vector2) -> Vector2:
 	return terrain.map_to_world(cell)

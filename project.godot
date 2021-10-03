@@ -35,6 +35,7 @@ config/icon="res://icon.png"
 Root="*res://singletons/Root.gd"
 Const="*res://singletons/Const.gd"
 Names="*res://singletons/Names.gd"
+Helpers="*res://singletons/Helpers.gd"
 
 [debug]
 

@@ -7,6 +7,7 @@
 [node name="SettlementUrbanPart" type="Node2D" groups=[
 "entity_part",
 "income_provider",
+"settlement_part",
 "urban",
 "workers_provider",
 ]]
