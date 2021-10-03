@@ -8,4 +8,4 @@ script = ExtResource( 1 )
 
 [node name="TerrainGenerator" type="Node2D" parent="."]
 script = ExtResource( 2 )
-target_area = Rect2( 0, 0, 500, 32 )
+target_area = Rect2( 0, 0, 250, 64 )
