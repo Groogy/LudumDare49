@@ -1,43 +1,46 @@
-tool
 extends Node2D
 
 
 const SettlementUrbanScene = preload("res://scenes/entities/SettlementUrbanPart.tscn")
 const SettlementNameScene = preload("res://scenes/entities/SettlementName.tscn")
 
+const PartsLookup = {
+	"urban": SettlementUrbanScene
+}
 
-func _draw() -> void:
-	if Engine.editor_hint:
-		var parent := get_parent()
-		var map: TileMap = parent.get_terrain_map()
-		if not map: return
-		var start = map.map_to_world(parent.start_settlement_area.position)
-		var end = map.map_to_world(parent.start_settlement_area.end * Vector2(1, 1))
-		draw_rect(Rect2(start, end-start), Color.red, false, 2.0, false)
-
-func generate() -> void:
-	if Engine.editor_hint: return
-	var parent := get_parent()
-	var entities = parent.get_entities()
-	var spot = find_empty_spot()
-	var parts = build_start_settlement_parts(spot)
-	var entity: Entity = entities.create_entity(parts)
-	pass
+var wanted_parts = []
+var start_x := 0
+var start_y := 0
 
 
-func build_start_settlement_parts(spot) -> Array:
-	var parent := get_parent()
-	var parts = []
-	for x in parent.start_settlement_max_size:
-		if not can_place_on(spot.x + x, spot.y): break
-		var part = SettlementUrbanScene.instance()
-		part.cell_x = spot.x + x
-		part.cell_y = spot.y
+func build_entity(entities, terrain) -> Entity:
+	var parts = build_wanted_parts(entities, terrain)
+	parts.append_array(build_functional_parts())
+	return entities.create_entity(parts)
+
+
+func build_wanted_parts(entities, terrain) -> Array:
+	var parts := []
+	var current_x = start_x
+	for wanted in wanted_parts:
+		if not can_place_on(current_x, start_y):
+			break
+		var scene = PartsLookup[wanted]
+		var part: EntityPart = scene.instance()
+		part.cell_x = current_x
+		part.cell_y = start_y
+		current_x += 1
 		parts.push_back(part)
+	return parts
+
+
+func build_functional_parts() -> Array:
+	var parts := []
 	var part = SettlementNameScene.instance()
-	part.settlement_name = "Roosdijk"
+	part.settlement_name = Names.generate_name()
 	parts.push_back(part)
 	return parts
+
 
 func find_empty_spot() -> Vector2:
 	var parent := get_parent()
