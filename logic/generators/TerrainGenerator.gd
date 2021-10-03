@@ -14,16 +14,18 @@ func _enter_tree() -> void:
 
 func _draw() -> void:
 	if Engine.editor_hint:
-		var map: TileMap = get_parent()
+		var map: TileMap = get_parent().get_terrain_map()
+		if not map: return
 		var start = map.map_to_world(target_area.position)
 		var end = map.map_to_world(target_area.end * Vector2(1, -1))
 		draw_rect(Rect2(start, end), Color.blueviolet, false, 2.0, false)
 
 
 func _generate_terrain() -> void:
-	var map: TileMap = get_parent()
+	var map: TileMap = get_parent().get_terrain_map()
 	map.clear()
 	map.map_bounds = target_area
-	for i in 5:
+	for i in 10:
 		for x in range(target_area.position.x, target_area.end.x):
 			map.fill(x) #Set a level playing field
+
