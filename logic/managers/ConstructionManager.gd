@@ -1,9 +1,9 @@
 extends Node
 
 
-const FloodBarrierScene = preload("res://scenes/FloodBarrierPart.tscn")
-const WindpumpScene = preload("res://scenes/WindpumpPart.tscn")
-const PipeScene = preload("res://scenes/PipePart.tscn")
+const FloodBarrierScene = preload("res://scenes/entities/FloodBarrierPart.tscn")
+const WindpumpScene = preload("res://scenes/entities/WindpumpPart.tscn")
+const PipeScene = preload("res://scenes/entities/PipePart.tscn")
 
 
 func can_raise_land(cell: Vector2) -> bool:

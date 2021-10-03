@@ -2,7 +2,7 @@ tool
 extends Node2D
 
 
-const UrbanSettlementScene = preload("res://scenes/UrbanSettlementPart.tscn")
+const SettlementUrbanScene = preload("res://scenes/entities/SettlementUrbanPart.tscn")
 
 
 func _draw() -> void:
@@ -29,7 +29,7 @@ func build_start_settlement_parts(spot) -> Array:
 	var parts = []
 	for x in parent.start_settlement_max_size:
 		if not can_place_on(spot.x + x, spot.y): break
-		var part = UrbanSettlementScene.instance()
+		var part = SettlementUrbanScene.instance()
 		part.cell_x = spot.x + x
 		part.cell_y = spot.y
 		parts.push_back(part)
