@@ -8,6 +8,13 @@ func destroy() -> void:
 	get_parent().queue_free()
 
 
+func find_connected_pipe() -> EntityPart:
+	for child in get_parent().get_children():
+		if child.is_in_group("pipe") and child.connections.has(self):
+			return child
+	return null # Pump has no pipes
+
+
 func _on_sucking() -> void:
 	var children := get_parent().get_children()
 	if children.size() < 2: return

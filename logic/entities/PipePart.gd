@@ -25,6 +25,37 @@ func suck(strength: int):
 	water.add_water_level_at(random.x, random.y, -strength)
 
 
+func find_pump() -> EntityPart:
+	for child in get_parent().get_children():
+		if child.is_in_group("pump"):
+			return child
+	assert(false, "HOW? All pipes should connect to a pump")
+	return null
+
+
+func destroy() -> void:
+	var pump := find_pump()
+	var current_pipe: EntityPart = pump.find_connected_pipe()
+	var previous_pipe := pump
+	var safe_pipes = []
+	var pipes_to_process = get_parent().get_children()
+	pipes_to_process.erase(pump)
+	while not pipes_to_process.empty():
+		if current_pipe == self:
+			break
+		pipes_to_process.erase(current_pipe)
+		var next_pipe: EntityPart = current_pipe.get_other_connection(previous_pipe)
+		previous_pipe = current_pipe
+		current_pipe = next_pipe
+		
+	var parent := get_parent()
+	for pipe in pipes_to_process:
+		parent.remove_child(pipe)
+		parent.check_destroyed()
+		pipe.queue_free()
+	
+
+
 func set_orientation(val: int) -> void:
 	assert(Const.PipeOrientations.values().has(val))
 	orientation = val
