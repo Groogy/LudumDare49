@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://art/construction.png" type="Texture" id=1]
+[ext_resource path="res://logic/entities/ConstructionPart.gd" type="Script" id=2]
+
+[node name="ConstructionPart" type="Node2D" groups=[
+"construction",
+"entity_part",
+"player_constructed",
+]]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color( 0, 0, 0, 0.6 )
+offset = Vector2( 8, 22 )
+polygon = PoolVector2Array( -8, -4, 8, -4, 10, -2, 10, 2, 8, 4, -8, 4, -10, 2, -10, -2 )
+
+[node name="ValueBar" type="Polygon2D" parent="."]
+color = Color( 0, 0.666667, 0, 0.784314 )
+offset = Vector2( 8, 22 )
+polygon = PoolVector2Array( -7, -3, 7, -3, 8, -1, 8, 1, 7, 3, -7, 3, -8, 1, -8, -1 )

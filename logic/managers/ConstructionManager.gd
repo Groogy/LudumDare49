@@ -4,6 +4,16 @@ extends Node
 const FloodBarrierScene = preload("res://scenes/entities/FloodBarrierPart.tscn")
 const WindpumpScene = preload("res://scenes/entities/WindpumpPart.tscn")
 const PipeScene = preload("res://scenes/entities/PipePart.tscn")
+const ConstructionScene = preload("res://scenes/entities/ConstructionPart.tscn")
+
+func queue_construction(cell: Vector2, build_callback: String, can_build_callback: String, money_cost: float, manpower_cost: int) -> void:
+	var construction := ConstructionScene.instance()
+	construction.set_cell(cell)
+	construction.build_callback = build_callback
+	construction.can_build_callback = can_build_callback
+	construction.needed_workers = manpower_cost
+	Root.resources.money -= money_cost
+	Root.map_manager.entities.create_entity([construction])
 
 
 func can_raise_land(cell: Vector2) -> bool:
@@ -97,18 +107,6 @@ func can_destroy_entity_part_at(cell: Vector2) -> bool:
 	if not part.is_in_group("player_constructed"):
 		return false
 	return true
-	#
-	#if part.is_in_group("flood_barrier"):
-	#	return can_destroy_flood_barrier(part)
-	#if part.is_in_group("pump"):
-	#	return can_destroy_pump(part)
-	#if part.is_in_group("pipe"):
-	#	return can_destroy_pipe(part)
-	#
-	#return false
-
-#func can_destroy_flood_barrier(part: EntityPart) -> bool:
-#	return part.is_top()
 
 
 func destroy_entity_part_at(cell: Vector2) -> void:
