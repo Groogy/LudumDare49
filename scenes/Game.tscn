@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/TerrainMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://logic/CameraController.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/ToolManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://logic/managers/EntityManager.gd" type="Script" id=8]
 [ext_resource path="res://scenes/WorldGenerator.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Resources.tscn" type="PackedScene" id=10]
 
 [node name="Game" type="Node2D"]
 
@@ -51,3 +52,5 @@ _water_map = NodePath("../MapManager/WaterMap")
 _entities = NodePath("../MapManager/EntityManager")
 target_area = Rect2( 0, 0, 250, 64 )
 start_settlement_area = Rect2( 210, -33, 25, 1 )
+
+[node name="Resources" parent="." instance=ExtResource( 10 )]

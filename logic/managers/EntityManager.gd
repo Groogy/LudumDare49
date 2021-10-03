@@ -78,8 +78,18 @@ func fetch_entity_at(x: int, y: int) -> Entity:
 			return child
 	return null
 
+
 func fetch_part_at(x: int, y: int) -> EntityPart:
 	for child in get_children():
 		if child.is_on(x, y):
 			return child.get_part_at(x, y)
 	return null
+
+
+func fetch_all_parts_of(group: String) -> Array:
+	var parts := []
+	for child in get_children():
+		for part in child.get_children():
+			if part.is_in_group(group):
+				parts.push_back(part)
+	return parts
