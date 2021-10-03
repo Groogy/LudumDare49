@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://logic/interface/ConstructionLogic.gd" type="Script" id=1]
 [ext_resource path="res://art/coin.png" type="Texture" id=2]
 [ext_resource path="res://art/workers.png" type="Texture" id=3]
 [ext_resource path="res://logic/interface/ResourcesLogic.gd" type="Script" id=4]
-[ext_resource path="res://logic/interface/LawsLogic.gd" type="Script" id=5]
 
 [node name="TopBarInterface" type="Panel"]
 anchor_right = 1.0
@@ -24,9 +23,9 @@ __meta__ = {
 }
 
 [node name="AllContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 50.0
+margin_left = 131.0
 margin_top = 14.0
-margin_right = 974.0
+margin_right = 893.0
 margin_bottom = 66.0
 
 [node name="Resources" type="GridContainer" parent="MarginContainer/AllContainer"]
@@ -123,50 +122,9 @@ margin_left = 236.0
 margin_right = 240.0
 margin_bottom = 52.0
 
-[node name="Laws" type="GridContainer" parent="MarginContainer/AllContainer"]
-margin_left = 244.0
-margin_right = 394.0
-margin_bottom = 52.0
-rect_min_size = Vector2( 150, 0 )
-columns = 2
-
-[node name="LawsLogic" type="Node" parent="MarginContainer/AllContainer/Laws"]
-script = ExtResource( 5 )
-
-[node name="TaxesLabel" type="Label" parent="MarginContainer/AllContainer/Laws"]
-margin_right = 40.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 0, 24 )
-text = "Taxes:"
-valign = 1
-
-[node name="TaxesOption" type="OptionButton" parent="MarginContainer/AllContainer/Laws"]
-margin_left = 44.0
-margin_right = 73.0
-margin_bottom = 24.0
-
-[node name="DraftLabel" type="Label" parent="MarginContainer/AllContainer/Laws"]
-margin_top = 28.0
-margin_right = 40.0
-margin_bottom = 52.0
-rect_min_size = Vector2( 0, 24 )
-text = "Draft: "
-valign = 1
-
-[node name="DraftOption" type="OptionButton" parent="MarginContainer/AllContainer/Laws"]
-margin_left = 44.0
-margin_top = 28.0
-margin_right = 73.0
-margin_bottom = 52.0
-
-[node name="VSeparator2" type="VSeparator" parent="MarginContainer/AllContainer"]
-margin_left = 398.0
-margin_right = 402.0
-margin_bottom = 52.0
-
 [node name="ConstructionButtons" type="HBoxContainer" parent="MarginContainer/AllContainer"]
-margin_left = 406.0
-margin_right = 924.0
+margin_left = 244.0
+margin_right = 762.0
 margin_bottom = 52.0
 
 [node name="ConstructionLogic" type="Node" parent="MarginContainer/AllContainer/ConstructionButtons"]

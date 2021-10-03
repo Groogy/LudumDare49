@@ -76,5 +76,5 @@ func _update_value_bar() -> void:
 
 
 func _on_growth():
-	_current_growth_value += 0.05
+	_current_growth_value += 0.01
 
