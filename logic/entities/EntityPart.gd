@@ -1,3 +1,4 @@
+class_name EntityPart
 extends Node2D
 
 

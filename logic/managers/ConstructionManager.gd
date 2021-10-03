@@ -59,24 +59,19 @@ func construct_flood_barrier(cell: Vector2) -> void:
 
 
 func can_construct_pipe(cell: Vector2) -> bool:
-	if not Root.map_manager.entities.is_empty(cell.x, cell.y):
+	var entities = Root.map_manager.entities 
+	if not entities.is_empty(cell.x, cell.y):
 		return false
 		
-	var connection := false
-	connection = connection or Root.map_manager.entities.has_pump_at(cell.x, cell.y-1)
-	return connection
+	return entities.can_connect_pipe(cell.x, cell.y)
 	
 	
 func construct_pipe(cell: Vector2) -> void:
-	var connection: Entity = null
-	if Root.map_manager.entities.has_pump_at(cell.x, cell.y-1):
-		connection = Root.map_manager.entities.fetch_entity_at(cell.x, cell.y-1)
-		
-	if connection:
-		var pipe := PipeScene.instance()
-		pipe.orientation = Const.PipeOrientations.VERTICAL
-		pipe.set_cell(cell)
-		connection.add_child(pipe)
+	var pipe := PipeScene.instance()
+	pipe.set_cell(cell)
+	var neighbor = Root.map_manager.entities.find_pipe_connection(cell.x, cell.y)
+	neighbor.get_parent().add_child(pipe)
+	pipe.connect_pipe(neighbor)
 	pass
 	
 

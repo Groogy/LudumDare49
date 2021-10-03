@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Entity",
 "language": "GDScript",
 "path": "res://logic/entities/Entity.gd"
+}, {
+"base": "Node2D",
+"class": "EntityPart",
+"language": "GDScript",
+"path": "res://logic/entities/EntityPart.gd"
 } ]
 _global_script_class_icons={
-"Entity": ""
+"Entity": "",
+"EntityPart": ""
 }
 
 [application]
