@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://logic/entities/EntityPartHeath.gd" type="Script" id=1]
+
+[node name="EntityPartHealth" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="Polygon2D" parent="."]
+position = Vector2( 8, 12 )
+color = Color( 0, 0, 0, 0.6 )
+polygon = PoolVector2Array( -8, -4, 8, -4, 10, -2, 10, 2, 8, 4, -8, 4, -10, 2, -10, -2 )
+
+[node name="Red" type="Polygon2D" parent="Background"]
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( -7, -3, 7, -3, 8, -1, 8, 1, 7, 3, -7, 3, -8, 1, -8, -1 )
+
+[node name="Green" type="Polygon2D" parent="Background"]
+color = Color( 0, 0.666667, 0, 1 )
+polygon = PoolVector2Array( -7, -3, 7, -3, 8, -1, 8, 1, 7, 3, -7, 3, -8, 1, -8, -1 )
