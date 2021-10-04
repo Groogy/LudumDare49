@@ -1,7 +1,7 @@
 extends Polygon2D
 
 
-const MovementSpeed = 16 # A tile a second
+const MovementSpeed = 64 # 4 tiles a second
 
 
 var target: EntityPart
@@ -17,7 +17,7 @@ func _physics_process(delta: float):
 		update_movement(current_cell, delta)
 
 func on_reached(current_cell) -> void:
-	var entity = Root.map_manager.entities.fetch_entity_at(current_cell.x, current_cell.y)
+	var entity = target.get_parent()
 	if entity:
 		entity.worker_arrived()
 	queue_free()
