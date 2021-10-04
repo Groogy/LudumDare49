@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/EventManager.gd" type="Script" id=1]
+[ext_resource path="res://logic/Event.gd" type="Script" id=2]
+[ext_resource path="res://scenes/EventGlue.gd" type="Script" id=3]
+
+[node name="EventManager" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="EventLog" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 81.0
+margin_bottom = 34.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "EVENT LOG"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EventTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 30.0
+autostart = true
+
+[node name="EventGlue" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="RisingTide" type="Node" parent="."]
+script = ExtResource( 2 )
+text = "RISING TIDE
+More Water will flow into map
+
+"
+
+[node name="Storm" type="Node" parent="."]
+script = ExtResource( 2 )
+text = "STORM
+A Storm have come to the coast and the water levels will start to rise!
+
+"
+
+[node name="Timer" type="Timer" parent="Storm"]
+wait_time = 60.0
+one_shot = true
+
+[node name="SevereStorm" type="Node" parent="."]
+script = ExtResource( 2 )
+text = "SEVERE STORM
+A Severe Storm have come to the coast and the water levels will rise sharply!
+
+"
+
+[node name="Timer" type="Timer" parent="SevereStorm"]
+wait_time = 60.0
+one_shot = true
+
+[node name="BabyBoom" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="BabyBoom"]
+process_mode = 0
+wait_time = 60.0
+one_shot = true
+
+[connection signal="timeout" from="EventTimer" to="." method="_on_EventTimer_timeout"]
+[connection signal="event_triggered" from="RisingTide" to="EventGlue" method="weather_intensifies"]
+[connection signal="event_triggered" from="Storm" to="EventGlue" method="storm"]
+[connection signal="timeout" from="Storm/Timer" to="EventGlue" method="storm_over"]
+[connection signal="event_triggered" from="SevereStorm" to="EventGlue" method="severe_storm"]
+[connection signal="timeout" from="SevereStorm/Timer" to="EventGlue" method="severe_storm_over"]
+[connection signal="event_triggered" from="BabyBoom" to="EventGlue" method="baby_boom"]
+[connection signal="timeout" from="BabyBoom/Timer" to="EventGlue" method="baby_boom_over"]

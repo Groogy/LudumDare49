@@ -28,7 +28,7 @@ func generated_income() -> float:
 
 
 func generated_workers() -> int:
-	return int(0.5 * multiplier)
+	return $WorkersManager.generated_workers()
 
 
 func free_workers() -> int:

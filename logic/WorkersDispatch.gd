@@ -15,6 +15,9 @@ class RequestData:
 var queued_requests = []
 
 
+var multiplier := 1.0
+
+
 func request_workers(source: EntityPart, target: EntityPart, count: int) -> void:
 	for i in count:
 		var data = RequestData.new()

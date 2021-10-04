@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "EntityPart",
 "language": "GDScript",
 "path": "res://logic/entities/EntityPart.gd"
+}, {
+"base": "Node",
+"class": "Event",
+"language": "GDScript",
+"path": "res://logic/Event.gd"
 } ]
 _global_script_class_icons={
 "Entity": "",
-"EntityPart": ""
+"EntityPart": "",
+"Event": ""
 }
 
 [application]

@@ -32,6 +32,7 @@ centered = false
 durability = 16
 
 [node name="WorkersManager" parent="." instance=ExtResource( 3 )]
+_generated_workers = 0.5
 
 [node name="Info" type="Panel" parent="."]
 margin_left = -24.0

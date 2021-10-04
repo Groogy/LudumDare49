@@ -5,6 +5,7 @@ onready var construction_manager = null
 onready var tool_manager = null
 onready var resources = null
 onready var workers_dispatch = null
+onready var effects = null
 
 func setup() -> void:
 	map_manager = $"/root/Game/MapManager"
@@ -12,3 +13,4 @@ func setup() -> void:
 	tool_manager = $"/root/Game/ToolManager"
 	resources = $"/root/Game/Resources"
 	workers_dispatch = $"/root/Game/WorkersDispatch"
+	effects = $"/root/Game/EffectsManager"

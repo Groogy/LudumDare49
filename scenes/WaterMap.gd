@@ -6,6 +6,7 @@ const FULL_WATER_TILE_ID = 16
 
 
 export var inject_water_pos := Vector2()
+export var intensity := 1.0
 
 var map_bounds = Rect2()
 
