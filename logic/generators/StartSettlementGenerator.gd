@@ -15,7 +15,7 @@ func generate() -> void:
 	var parent := get_parent()
 	var entities = parent.get_entities()
 	var terrain = parent.get_terrain_map()
-	var spot = find_empty_spot()
+	var spot = find_empty_spot(3)
 	start_x = spot.x
 	start_y = spot.y
 	for x in parent.start_settlement_max_size:

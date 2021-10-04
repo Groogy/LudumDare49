@@ -45,7 +45,7 @@ func build_functional_parts() -> Array:
 	return parts
 
 
-func find_empty_spot() -> Vector2:
+func find_empty_spot(var clearence: int) -> Vector2:
 	var parent := get_parent()
 	var terrain = parent.get_terrain_map()
 	var entities = parent.get_entities()
@@ -55,7 +55,9 @@ func find_empty_spot() -> Vector2:
 	while not is_empty:
 		x = parent.start_settlement_area.position.x + randi() % int(parent.start_settlement_area.size.x)
 		y = terrain.find_surface(x)-1
-		is_empty = can_place_on(x, y)
+		is_empty = true
+		for i in clearence:
+			is_empty = is_empty and can_place_on(x+i, y)
 	return Vector2(x, y)
 	
 func can_place_on(x: int, y: int) -> bool:
