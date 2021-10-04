@@ -2,7 +2,7 @@ extends "BuildToolNode.gd"
 
 
 func can_build() -> bool:
-	return Root.resources.money >= get_money_cost() and \
+	return .can_build() and \
 	Root.construction_manager.can_construct_pipe(cell_under_mouse)
 
 

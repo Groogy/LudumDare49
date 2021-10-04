@@ -34,11 +34,19 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func can_build() -> bool:
-	return false
+	return Root.resources.money >= get_money_cost()
 
 
 func build() -> void:
 	pass
+
+
+func get_money_cost() -> float:
+	return 0.0
+
+
+func get_workers_cost() -> int:
+	return 0
 
 
 func _update_mouse_position() -> void:

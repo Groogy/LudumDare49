@@ -1,7 +1,8 @@
 extends "BuildToolNode.gd"
 
+
 func can_build() -> bool:
-	return Root.resources.money >= get_money_cost() and \
+	return .can_build() and \
 	Root.construction_manager.can_raise_land(cell_under_mouse)
 
 
