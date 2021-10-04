@@ -21,8 +21,8 @@ func _process(_delta: float) -> void:
 		perform_growth_spurt()
 
 
-func lose_growth() -> void:
-	_current_growth_value = max(_current_growth_value-0.005, 0.0)
+func lose_growth(mult: float) -> void:
+	_current_growth_value = max(_current_growth_value-0.005 * mult, 0.0)
 
 
 func perform_growth_spurt() -> void:
@@ -95,7 +95,6 @@ func _on_growth():
 	_current_growth_value += 0.01
 
 
-
 func _on_Area2D_mouse_entered():
 	$Panel.visible = true
 
@@ -105,5 +104,6 @@ func _on_Area2D_mouse_exited():
 
 
 func _on_pay_for_growth():
-	Root.resources.money -= 100
-	_current_growth_value += 0.05
+	if Root.resources.money >= 100:
+		Root.resources.money -= 100
+		_current_growth_value += 0.05

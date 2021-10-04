@@ -24,7 +24,7 @@ func get_rect() -> Rect2:
 
 
 func generated_income() -> float:
-	return 20.0 * multiplier
+	return 40.0 * multiplier
 
 
 func generated_workers() -> int:
