@@ -6,6 +6,8 @@ const PossibleParts = [
 	preload("res://scenes/entities/SettlementMarketPart.tscn")
 ]
 
+onready var SettlementGenerator = load("res://logic/generators/SettlementGenerator.gd")
+
 
 onready var _valuebar_pos_cache: PoolVector2Array = $ValueBar.polygon
 
@@ -25,11 +27,11 @@ func lose_growth() -> void:
 
 func perform_growth_spurt() -> void:
 	_current_growth_value = 0.0
-	if randi() % 10 == 0:
+	if randi() % 5 == 0:
 		settle_new_settlement()
 		# Found a new city
 		pass
-	elif randi() % 5 == 0:
+	elif randi() % 4 == 0:
 		expand_settlement()
 		pass
 	else:
@@ -37,8 +39,15 @@ func perform_growth_spurt() -> void:
 
 
 func settle_new_settlement() -> void:
-	# TODO
-	expand_settlement()
+	var generator = SettlementGenerator.new()
+	var spot = generator.find_good_spot(3)
+	if spot == Vector2(0, 0):
+		expand_settlement()
+	else:
+		generator.wanted_parts = ["urban"]
+		generator.start_x = spot.x
+		generator.start_y = spot.y
+		generator.build_entity(Root.map_manager.entities, Root.map_manager.terrain)
 
 
 func expand_settlement() -> void:
