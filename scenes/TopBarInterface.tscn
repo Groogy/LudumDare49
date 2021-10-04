@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://logic/interface/ConstructionLogic.gd" type="Script" id=1]
 [ext_resource path="res://art/coin.png" type="Texture" id=2]
 [ext_resource path="res://art/workers.png" type="Texture" id=3]
 [ext_resource path="res://logic/interface/ResourcesLogic.gd" type="Script" id=4]
 [ext_resource path="res://scenes/ConstructionTooltip.tscn" type="PackedScene" id=5]
+[ext_resource path="res://logic/interface/SpeedControlLogic.gd" type="Script" id=6]
 
 [node name="TopBarInterface" type="Panel"]
 anchor_right = 1.0
@@ -17,16 +18,16 @@ __meta__ = {
 [node name="MarginContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -0.749153
-margin_bottom = -0.749153
+margin_top = -1.93836
+margin_bottom = -1.93836
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AllContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 131.0
+margin_left = 36.0
 margin_top = 14.0
-margin_right = 893.0
+margin_right = 988.0
 margin_bottom = 66.0
 
 [node name="Resources" type="GridContainer" parent="MarginContainer/AllContainer"]
@@ -208,6 +209,55 @@ margin_right = 518.0
 margin_bottom = 52.0
 text = "Destroy"
 
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/AllContainer"]
+margin_left = 766.0
+margin_right = 770.0
+margin_bottom = 52.0
+
+[node name="SpeedControls" type="HBoxContainer" parent="MarginContainer/AllContainer"]
+margin_left = 774.0
+margin_right = 952.0
+margin_bottom = 52.0
+
+[node name="SpeedControlLogic" type="Node" parent="MarginContainer/AllContainer/SpeedControls"]
+script = ExtResource( 6 )
+
+[node name="Speed1" type="Button" parent="MarginContainer/AllContainer/SpeedControls"]
+margin_right = 36.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 36, 0 )
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speed2" type="Button" parent="MarginContainer/AllContainer/SpeedControls"]
+margin_left = 40.0
+margin_right = 76.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 36, 0 )
+text = ">>"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Speed3" type="Button" parent="MarginContainer/AllContainer/SpeedControls"]
+margin_left = 80.0
+margin_right = 116.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 36, 0 )
+text = ">>>"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/AllContainer/SpeedControls"]
+margin_left = 120.0
+margin_top = 19.0
+margin_right = 178.0
+margin_bottom = 33.0
+text = "Speed x1"
+
 [connection signal="pressed" from="MarginContainer/AllContainer/ConstructionButtons/Unselect" to="MarginContainer/AllContainer/ConstructionButtons/ConstructionLogic" method="_on_unselect"]
 [connection signal="pressed" from="MarginContainer/AllContainer/ConstructionButtons/RaiseLand" to="MarginContainer/AllContainer/ConstructionButtons/ConstructionLogic" method="_on_raise_land"]
 [connection signal="pressed" from="MarginContainer/AllContainer/ConstructionButtons/LowerLand" to="MarginContainer/AllContainer/ConstructionButtons/ConstructionLogic" method="_on_lower_land"]
@@ -215,3 +265,6 @@ text = "Destroy"
 [connection signal="pressed" from="MarginContainer/AllContainer/ConstructionButtons/Pump" to="MarginContainer/AllContainer/ConstructionButtons/ConstructionLogic" method="_on_construct_pump"]
 [connection signal="pressed" from="MarginContainer/AllContainer/ConstructionButtons/Pipe" to="MarginContainer/AllContainer/ConstructionButtons/ConstructionLogic" method="on_construct_pipe"]
 [connection signal="pressed" from="MarginContainer/AllContainer/ConstructionButtons/Destroy" to="MarginContainer/AllContainer/ConstructionButtons/ConstructionLogic" method="_on_destroy"]
+[connection signal="pressed" from="MarginContainer/AllContainer/SpeedControls/Speed1" to="MarginContainer/AllContainer/SpeedControls/SpeedControlLogic" method="_on_Speed1_pressed"]
+[connection signal="pressed" from="MarginContainer/AllContainer/SpeedControls/Speed2" to="MarginContainer/AllContainer/SpeedControls/SpeedControlLogic" method="_on_Speed2_pressed"]
+[connection signal="pressed" from="MarginContainer/AllContainer/SpeedControls/Speed3" to="MarginContainer/AllContainer/SpeedControls/SpeedControlLogic" method="_on_Speed3_pressed"]
