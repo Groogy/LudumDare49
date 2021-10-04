@@ -16,7 +16,6 @@ func baby_boom_over():
 func storm():
 	Root.map_manager.water.intensity += 4
 	Root.effects.add_storm_intensity(0.4)
-	Root.effects.storm_intensity += 0.4
 	$"../Storm/Timer".start()
 
 
@@ -33,7 +32,7 @@ func severe_storm():
 
 func severe_storm_over():
 	Root.map_manager.water.intensity -= 8
-	Root.effects.add_storm_intensity(0.8)
+	Root.effects.add_storm_intensity(-0.8)
 
 
 func tulip_craze():

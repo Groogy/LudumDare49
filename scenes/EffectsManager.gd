@@ -19,7 +19,7 @@ func _physics_process(delta):
 
 
 func add_storm_intensity(val: float) -> void:
-	set_storm_intensity(storm_intensity + val)
+	set_storm_intensity(clamp(storm_intensity + val, 0.0, 1.0))
 
 
 func set_storm_intensity(val: float) -> void:
@@ -66,6 +66,7 @@ func _lerp_thunder_background(val: Color) -> void:
 
 
 func _on_LightingTimer_timeout():
+	if storm_intensity < 0.5: return
 	$ThunderTween.interpolate_method(self, "_lerp_thunder_background", _thunder_background_color, _current_background_color, 1)
 	$ThunderTween.start()
 	$ThunderTimer.wait_time = rand_range(0.0, 3.0)
