@@ -106,4 +106,4 @@ func _on_Area2D_mouse_exited():
 func _on_pay_for_growth():
 	if Root.resources.money >= 100:
 		Root.resources.money -= 100
-		_current_growth_value += 0.05
+		_current_growth_value += 0.1
