@@ -12,8 +12,8 @@ start_y = 16
 [node name="TerrainGenerator" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
-[node name="StartSettlementGenerator" type="Node2D" parent="."]
-script = ExtResource( 3 )
-
 [node name="WaterGenerator" type="Node2D" parent="."]
 script = ExtResource( 4 )
+
+[node name="StartSettlementGenerator" type="Node2D" parent="."]
+script = ExtResource( 3 )

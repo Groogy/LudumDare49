@@ -73,3 +73,12 @@ func find_surface(x: int, include_partial: bool = false) -> int:
 		if (include_partial and not is_empty(x, y)) or is_filled(x, y):
 			return y
 	return -int(map_bounds.position.y) # There's a gaping hole in the map?
+
+
+func find_peak() -> int:
+	var peak := 0
+	for x in range(map_bounds.position.x, map_bounds.end.x):
+		var surface := find_surface(x)
+		if surface < peak:
+			peak = surface
+	return peak

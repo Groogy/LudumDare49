@@ -15,8 +15,10 @@ func _draw() -> void:
 func generate() -> void:
 	var parent := get_parent()
 	var map: TileMap = parent.get_terrain_map()
+	var water: TileMap = parent.get_water_map()
 	if not map: return
 	map.map_bounds = parent.target_area
+	water.map_bounds = parent.target_area
 	var current_y = parent.start_y
 	var prevous_y = current_y
 	var min_y = parent.start_y

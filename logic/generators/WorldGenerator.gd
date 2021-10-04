@@ -9,7 +9,6 @@ export(NodePath) var _entities
 export var generation_seed: int = 0 setget set_generation_seed
 export var target_area := Rect2(0, 0, 100, 100)
 export var start_y := 8
-export var start_settlement_area := Rect2(0, 0, 100, 100)
 export var start_settlement_max_size := 3
 
 

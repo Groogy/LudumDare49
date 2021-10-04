@@ -7,6 +7,8 @@ const FULL_WATER_TILE_ID = 16
 
 export var inject_water_pos := Vector2()
 
+var map_bounds = Rect2()
+
 
 func _draw():
 	if Engine.editor_hint:
@@ -40,6 +42,13 @@ func add_water_level_at(x: int, y: int, val: int) -> void:
 	set_water_level_at(x, y, level + val)
 
 
+func find_water_surface(x: int) -> int:
+	for y in range(-map_bounds.end.y, -map_bounds.position.y):
+		if get_water_level_at(x, y) > 0:
+			return y
+	return -int(map_bounds.position.y) # There's a gaping hole in the map?
+
+
 func _convert_id_to_water_level(id: int) -> int:
 	id += 1
 	if id > Const.MAX_WATER_LEVEL: 
@@ -52,3 +61,4 @@ func _convert_water_level_to_id(level: int, x: int, y: int) -> int:
 		return FULL_WATER_TILE_ID
 	else:
 		return level-1
+		

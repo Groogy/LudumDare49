@@ -34,7 +34,6 @@ _water_map = NodePath("../MapManager/WaterMap")
 _entities = NodePath("../MapManager/EntityManager")
 target_area = Rect2( 0, 0, 250, 64 )
 start_y = 4
-start_settlement_area = Rect2( 210, -33, 25, 1 )
 
 [node name="ConstructionManager" type="Node" parent="."]
 script = ExtResource( 6 )
