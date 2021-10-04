@@ -17,7 +17,24 @@ func generate() -> void:
 	var map: TileMap = parent.get_terrain_map()
 	if not map: return
 	map.map_bounds = parent.target_area
-	for i in 32:
-		for x in range(parent.target_area.position.x, parent.target_area.end.x):
-			map.fill(x) #Set a level playing field
+	var current_y = parent.start_y
+	var prevous_y = current_y
+	var min_y = parent.start_y
+	var count := 10
+	var highest = 0
+	var levels := []
+	for x in range(parent.target_area.position.x, parent.target_area.end.x):
+		levels.append(current_y)
+		if current_y > highest: highest = current_y
+		if x == 32 or x == 64: min_y /= 2
+		if count <= 0 and randi() % 3 == 0: # Should we change level?
+			current_y = max(current_y + randi() % 3 - 1, min_y)
+			count = 6
+		else:
+			count -= 1
+	
+	for y in highest:
+		for x in range(parent.target_area.position.x, parent.target_area.end.x): 
+			if -map.find_surface(x) < levels[x]:
+				map.fill(x)
 
