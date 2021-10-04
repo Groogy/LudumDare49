@@ -5,7 +5,6 @@ var multiplier := 1.0 setget set_multiplier
 
 
 func _ready() -> void:
-	randomize_settlement_sprite()
 	$Info.visible = false
 	
 
@@ -18,11 +17,6 @@ func set_multiplier(val: float) -> void:
 	multiplier = val
 
 
-func randomize_settlement_sprite() -> void:
-	var random = randi() % $Sprite.hframes
-	$Sprite.frame = random
-
-
 func get_rect() -> Rect2:
 	var rect = $Sprite.get_rect()
 	rect.position += position
@@ -30,11 +24,11 @@ func get_rect() -> Rect2:
 
 
 func generated_income() -> float:
-	return 5.0 * multiplier
+	return 25.0 * multiplier
 
 
 func generated_workers() -> int:
-	return int(5 * multiplier)
+	return int(1 * multiplier)
 
 
 func free_workers() -> int:

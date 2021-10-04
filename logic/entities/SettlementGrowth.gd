@@ -1,7 +1,10 @@
 extends Node2D
 
 
-const SettlementUrbanPart = preload("res://scenes/entities/SettlementUrbanPart.tscn")
+const PossibleParts = [
+	preload("res://scenes/entities/SettlementUrbanPart.tscn"),
+	preload("res://scenes/entities/SettlementMarketPart.tscn")
+]
 
 
 onready var _valuebar_pos_cache: PoolVector2Array = $ValueBar.polygon
@@ -55,7 +58,7 @@ func expand_settlement() -> void:
 	if valid.empty():
 		increase_multiplier()
 	else:
-		var part := SettlementUrbanPart.instance()
+		var part = PossibleParts[randi()%PossibleParts.size()].instance()
 		part.set_cell(valid[randi()%valid.size()])
 		entity.add_child(part)
 

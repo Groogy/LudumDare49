@@ -17,6 +17,8 @@ func generate() -> void:
 				break
 	start_x = spot.x
 	start_y = spot.y
-	for x in parent.start_settlement_max_size:
+	for x in parent.start_settlement_max_size-1:
 		wanted_parts.push_back("urban")
+	wanted_parts.push_back("market")
+	wanted_parts.shuffle()
 	build_entity(entities, terrain)
