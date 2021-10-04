@@ -10,7 +10,7 @@ func can_build() -> bool:
 
 func build() -> void:
 	Root.construction_manager.queue_construction(
-		cell_under_mouse, "construct_pipe", "can_progress_pipe",
+		cell_under_mouse, null, "construct_pipe", "can_progress_pipe",
 		MoneyCost, ManpowerCost
 	)
 

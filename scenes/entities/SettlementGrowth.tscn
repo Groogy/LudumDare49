@@ -17,7 +17,7 @@ polygon = PoolVector2Array( -47, -3, 47, -3, 48, -1, 48, 1, 47, 3, -47, 3, -48, 
 
 [node name="GrowthTimer" type="Timer" parent="."]
 process_mode = 0
-wait_time = 15.0
+wait_time = 10.0
 autostart = true
 
 [node name="Button" type="Button" parent="."]

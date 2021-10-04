@@ -6,14 +6,17 @@ const WindpumpScene = preload("res://scenes/entities/WindpumpPart.tscn")
 const PipeScene = preload("res://scenes/entities/PipePart.tscn")
 const ConstructionScene = preload("res://scenes/entities/ConstructionPart.tscn")
 
-func queue_construction(cell: Vector2, build_callback: String, can_build_callback: String, money_cost: float, manpower_cost: int) -> void:
+func queue_construction(cell: Vector2, entity: Entity, build_callback: String, can_build_callback: String, money_cost: float, manpower_cost: int) -> void:
 	var construction := ConstructionScene.instance()
 	construction.set_cell(cell)
 	construction.build_callback = build_callback
 	construction.can_build_callback = can_build_callback
 	construction.needed_workers = manpower_cost
 	Root.resources.money -= money_cost
-	Root.map_manager.entities.create_entity([construction])
+	if not entity:
+		Root.map_manager.entities.create_entity([construction])
+	else:
+		entity.add_child(construction)
 
 
 func can_raise_land(cell: Vector2) -> bool:
