@@ -28,7 +28,7 @@ func generate() -> void:
 	for x in range(parent.target_area.position.x, parent.target_area.end.x):
 		levels.append(current_y)
 		if current_y > highest: highest = current_y
-		if count <= 0 and randi() % 3 == 0: # Should we change level?
+		if count <= 0 and (x > 64 and current_y < 18) or randi() % 2 == 0: # Should we change level?
 			if randi() % 2 == 0:
 				current_y = max(current_y + randi() % 3 - 1, min_y)
 			else:

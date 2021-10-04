@@ -12,8 +12,3 @@ func get_rect() -> Rect2:
 	var rect = $Sprite.get_rect()
 	rect.position += position
 	return rect
-
-
-func generated_income() -> float:
-	return 50.0
-

@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://art/farm.png" type="Texture" id=1]
+[ext_resource path="res://logic/entities/SettlementFarmPart.gd" type="Script" id=2]
+[ext_resource path="res://scenes/WorkersManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://art/workers_small.png" type="Texture" id=4]
+[ext_resource path="res://art/coin_small.png" type="Texture" id=5]
+[ext_resource path="res://scenes/entities/EntityPartHeath.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
+
+[node name="SettlementFarmPart" type="Node2D" groups=[
+"entity_part",
+"income_provider",
+"settlement_part",
+"urban",
+"workers_provider",
+]]
+script = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 8, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="EntityPartHealth" parent="." instance=ExtResource( 6 )]
+durability = 24
+
+[node name="WorkersManager" parent="." instance=ExtResource( 3 )]
+
+[node name="Info" type="Panel" parent="."]
+margin_left = -24.0
+margin_top = -60.0
+margin_right = 40.0
+margin_bottom = -2.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="MarginContainer" parent="Info"]
+margin_right = 50.0
+margin_bottom = 58.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Info/Container"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 60.0
+margin_bottom = 54.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Info/Container/VBox"]
+margin_right = 56.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 56, 0 )
+text = "Farm"
+align = 1
+
+[node name="Grid" type="GridContainer" parent="Info/Container/VBox"]
+margin_top = 18.0
+margin_right = 56.0
+margin_bottom = 50.0
+columns = 2
+
+[node name="MoneyIcon" type="TextureRect" parent="Info/Container/VBox/Grid"]
+margin_right = 12.0
+margin_bottom = 12.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 5 )
+stretch_mode = 3
+
+[node name="MoneyValue" type="Label" parent="Info/Container/VBox/Grid"]
+margin_left = 16.0
+margin_right = 56.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
+text = "+1"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WorkersIcon" type="TextureRect" parent="Info/Container/VBox/Grid"]
+margin_top = 18.0
+margin_right = 12.0
+margin_bottom = 32.0
+texture = ExtResource( 4 )
+
+[node name="WorkersValue" type="Label" parent="Info/Container/VBox/Grid"]
+margin_left = 16.0
+margin_top = 18.0
+margin_right = 56.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 24, 0 )
+text = "+1"
+align = 2
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]

@@ -5,6 +5,9 @@ const FloodBarrierScene = preload("res://scenes/entities/FloodBarrierPart.tscn")
 const WindpumpScene = preload("res://scenes/entities/WindpumpPart.tscn")
 const PipeScene = preload("res://scenes/entities/PipePart.tscn")
 const ConstructionScene = preload("res://scenes/entities/ConstructionPart.tscn")
+const TulipsFieldScene = preload("res://scenes/entities/TulipFieldPart.tscn")
+
+
 const SettlementGenerator = preload("res://logic/generators/SettlementGenerator.gd")
 
 func queue_construction(cell: Vector2, entity: Entity, groups: Array, build_callback: String, can_build_callback: String, money_cost: float, manpower_cost: int) -> void:
@@ -154,6 +157,29 @@ func construct_pump(cell: Vector2) -> void:
 	var pump := WindpumpScene.instance()
 	pump.set_cell(cell)
 	Root.map_manager.entities.create_entity([pump])
+
+
+func can_construct_tulips(cell: Vector2) -> bool:
+	var manager = Root.map_manager
+	if not manager.is_empty(cell.x, cell.y):
+		return false
+	if not manager.terrain.is_filled(cell.x, cell.y+1):
+		return false
+	return true
+
+
+func can_progress_tulips(cell: Vector2) -> bool:
+	var manager = Root.map_manager
+	if manager.water.has_water(cell.x, cell.y):
+		return false
+	return true
+
+
+func construct_tulips(cell: Vector2) -> void:
+	var tulip := TulipsFieldScene.instance()
+	tulip.set_cell(cell)
+	Root.map_manager.entities.create_entity([tulip])
+
 
 
 func can_construct_settlement(cell: Vector2) -> bool:

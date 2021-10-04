@@ -21,6 +21,10 @@ func _process(_delta: float) -> void:
 			pos.x *= min(health, 1.0)
 			$Background/Green.polygon[i] = pos
 
+func _physics_process(delta):
+	if not waiting_for_worker and health < 1.0:
+		_request_worker()
+
 
 func _update_damage(water) -> void:
 	if water > 32 + durability or randi() % (33 + durability - water) == 0:
@@ -32,12 +36,12 @@ func _update_damage(water) -> void:
 
 
 func _request_worker():
-	waiting_for_worker = true
 	var providers = Root.map_manager.entities.fetch_all_parts_of("workers_provider")
 	providers.sort_custom(self, "provider_sort")
 	for provider in providers:
 		var provided = provider.request_workers(get_parent(), 1)
 		if provided > 0:
+			waiting_for_worker = true
 			break
 
 

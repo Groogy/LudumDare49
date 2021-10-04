@@ -3,6 +3,7 @@ extends Node2D
 
 const SettlementUrbanScene = preload("res://scenes/entities/SettlementUrbanPart.tscn")
 const SettlementMarketScene = preload("res://scenes/entities/SettlementMarketPart.tscn")
+const SettlementFarmScene = preload("res://scenes/entities/SettlementFarmPart.tscn")
 
 const SettlementNameScene = preload("res://scenes/entities/SettlementName.tscn")
 const SettlementGrowthScene = preload("res://scenes/entities/SettlementGrowth.tscn")
@@ -10,6 +11,7 @@ const SettlementGrowthScene = preload("res://scenes/entities/SettlementGrowth.ts
 const PartsLookup = {
 	"urban": SettlementUrbanScene,
 	"market": SettlementMarketScene,
+	"farm": SettlementFarmScene,
 }
 
 var wanted_parts = []

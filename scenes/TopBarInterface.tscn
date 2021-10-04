@@ -25,9 +25,9 @@ __meta__ = {
 }
 
 [node name="AllContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 36.0
+margin_left = 9.0
 margin_top = 14.0
-margin_right = 988.0
+margin_right = 1015.0
 margin_bottom = 66.0
 
 [node name="Resources" type="GridContainer" parent="MarginContainer/AllContainer"]
@@ -126,7 +126,7 @@ margin_bottom = 52.0
 
 [node name="ConstructionButtons" type="HBoxContainer" parent="MarginContainer/AllContainer"]
 margin_left = 244.0
-margin_right = 762.0
+margin_right = 816.0
 margin_bottom = 52.0
 
 [node name="ConstructionLogic" type="Node" parent="MarginContainer/AllContainer/ConstructionButtons"]
@@ -203,20 +203,30 @@ text = "Pipe"
 position = Vector2( 1.98425, 53.9716 )
 tool_key = 4
 
-[node name="Destroy" type="Button" parent="MarginContainer/AllContainer/ConstructionButtons"]
+[node name="Tulips" type="Button" parent="MarginContainer/AllContainer/ConstructionButtons"]
 margin_left = 456.0
-margin_right = 518.0
+margin_right = 506.0
+margin_bottom = 52.0
+text = "Tulips"
+
+[node name="ConstructionTooltip" parent="MarginContainer/AllContainer/ConstructionButtons/Tulips" instance=ExtResource( 5 )]
+position = Vector2( 1.98425, 53.9716 )
+tool_key = 6
+
+[node name="Destroy" type="Button" parent="MarginContainer/AllContainer/ConstructionButtons"]
+margin_left = 510.0
+margin_right = 572.0
 margin_bottom = 52.0
 text = "Destroy"
 
 [node name="VSeparator2" type="VSeparator" parent="MarginContainer/AllContainer"]
-margin_left = 766.0
-margin_right = 770.0
+margin_left = 820.0
+margin_right = 824.0
 margin_bottom = 52.0
 
 [node name="SpeedControls" type="HBoxContainer" parent="MarginContainer/AllContainer"]
-margin_left = 774.0
-margin_right = 952.0
+margin_left = 828.0
+margin_right = 1006.0
 margin_bottom = 52.0
 
 [node name="SpeedControlLogic" type="Node" parent="MarginContainer/AllContainer/SpeedControls"]
@@ -264,6 +274,7 @@ text = "Speed x1"
 [connection signal="pressed" from="MarginContainer/AllContainer/ConstructionButtons/FloodBarrier" to="MarginContainer/AllContainer/ConstructionButtons/ConstructionLogic" method="_on_construct_flood_barrier"]
 [connection signal="pressed" from="MarginContainer/AllContainer/ConstructionButtons/Pump" to="MarginContainer/AllContainer/ConstructionButtons/ConstructionLogic" method="_on_construct_pump"]
 [connection signal="pressed" from="MarginContainer/AllContainer/ConstructionButtons/Pipe" to="MarginContainer/AllContainer/ConstructionButtons/ConstructionLogic" method="on_construct_pipe"]
+[connection signal="pressed" from="MarginContainer/AllContainer/ConstructionButtons/Tulips" to="MarginContainer/AllContainer/ConstructionButtons/ConstructionLogic" method="_on_Tulips_pressed"]
 [connection signal="pressed" from="MarginContainer/AllContainer/ConstructionButtons/Destroy" to="MarginContainer/AllContainer/ConstructionButtons/ConstructionLogic" method="_on_destroy"]
 [connection signal="pressed" from="MarginContainer/AllContainer/SpeedControls/Speed1" to="MarginContainer/AllContainer/SpeedControls/SpeedControlLogic" method="_on_Speed1_pressed"]
 [connection signal="pressed" from="MarginContainer/AllContainer/SpeedControls/Speed2" to="MarginContainer/AllContainer/SpeedControls/SpeedControlLogic" method="_on_Speed2_pressed"]

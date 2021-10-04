@@ -11,10 +11,10 @@ func _on_Speed1_pressed():
 
 
 func _on_Speed2_pressed():
-	Engine.time_scale = 8.0
-	$"../Label".text = "Speed x8"
+	Engine.time_scale = 2.0
+	$"../Label".text = "Speed x2"
 
 
 func _on_Speed3_pressed():
-	Engine.time_scale = 16.0
-	$"../Label".text = "Speed x16"
+	Engine.time_scale = 4.0
+	$"../Label".text = "Speed x4"

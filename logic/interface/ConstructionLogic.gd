@@ -27,3 +27,7 @@ func _on_construct_pump():
 
 func _on_destroy():
 	Root.tool_manager.current_tool = Const.Tool.DESTROY
+
+
+func _on_Tulips_pressed():
+	Root.tool_manager.current_tool = Const.Tool.TULIPS

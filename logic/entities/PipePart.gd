@@ -5,6 +5,7 @@ var connections := []
 var needed_workers := 0
 var provided_workers := 0
 var workers_on_the_way := 0
+var levels_to_suck := 0
 
 
 func _process(_delta: float) -> void:
@@ -20,24 +21,8 @@ func _physics_process(_delta: float) -> void:
 
 func suck(strength: int):
 	if not is_finished(): return
-	var to_check = [
-		Vector2(0, -1), Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0),
-		Vector2(0, 1)
-	]
-	var water = Root.map_manager.water
-	var entities = Root.map_manager.entities
-	var valid := []
-	for check in to_check:
-		var coord = get_cell() + check
-		if water.get_water_level_at(coord.x, coord.y) <= 0:
-			continue
-		if entities.has_pipe_at(coord.x, coord.y):
-			continue
-		valid.append(coord)
-	if valid.empty(): return
-	var random = valid[randi() % valid.size()]
-	strength = clamp(strength, 0, water.get_water_level_at(random.x, random.y))
-	water.add_water_level_at(random.x, random.y, -strength)
+	levels_to_suck += strength
+	$SuckTimer.start()
 
 
 func can_progress() -> bool:
@@ -62,8 +47,9 @@ func provider_sort(a, b) -> bool:
 
 
 func worker_arrived() -> void:
-	provided_workers += 1
-	workers_on_the_way -= 1
+	if not is_finished():
+		provided_workers += 1
+		workers_on_the_way -= 1
 	.worker_arrived()
 
 
@@ -103,7 +89,6 @@ func destroy() -> void:
 		parent.remove_child(pipe)
 		parent.check_destroyed()
 		pipe.queue_free()
-	
 
 
 func set_orientation(val: int) -> void:
@@ -168,3 +153,29 @@ func _purge_connections() -> void:
 	for connection in to_remove:
 		connections.erase(connection)
 
+
+
+func _on_suck_over_time():
+	var to_check = [
+		Vector2(0, -1), Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0),
+		Vector2(0, 1)
+	]
+	if levels_to_suck <= 0: return
+	var water = Root.map_manager.water
+	var entities = Root.map_manager.entities
+	var valid := []
+	for check in to_check:
+		var coord = get_cell() + check
+		if water.get_water_level_at(coord.x, coord.y) <= 0:
+			continue
+		if entities.has_pipe_at(coord.x, coord.y):
+			continue
+		valid.append(coord)
+	if valid.empty(): return
+	levels_to_suck -= 1
+	var random = valid[randi() % valid.size()]
+	var strength = clamp(1, 0, water.get_water_level_at(random.x, random.y))
+	water.add_water_level_at(random.x, random.y, -strength)
+	if levels_to_suck > 0:
+		$SuckTimer.start()
+	

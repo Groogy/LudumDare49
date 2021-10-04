@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://art/tulips.png" type="Texture" id=1]
+[ext_resource path="res://logic/entities/FloodBarrierPart.gd" type="Script" id=2]
+[ext_resource path="res://scenes/entities/EntityPartHeath.tscn" type="PackedScene" id=3]
+
+[node name="TulipFieldPart" type="Node2D" groups=[
+"entity_part",
+"income_provider",
+"player_constructed",
+]]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="EntityPartHealth" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 4 )
+durability = 8
+maintenance = 16

@@ -24,6 +24,7 @@ enum Tool {
 	FLOOD_BARRIER
 	PIPE
 	PUMP
+	TULIPS
 	DESTROY
 }
 

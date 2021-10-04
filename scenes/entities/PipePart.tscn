@@ -19,3 +19,10 @@ vframes = 2
 
 [node name="EntityPartHealth" parent="." instance=ExtResource( 3 )]
 durability = 8
+
+[node name="SuckTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="SuckTimer" to="." method="_on_suck_over_time"]

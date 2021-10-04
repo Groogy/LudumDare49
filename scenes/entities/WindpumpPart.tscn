@@ -10,7 +10,7 @@
 "pump",
 ]]
 script = ExtResource( 1 )
-sucking_power = 48
+sucking_power = 24
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -19,7 +19,7 @@ offset = Vector2( 0, -16 )
 
 [node name="SuckingTimer" type="Timer" parent="."]
 process_mode = 0
-wait_time = 0.25
+wait_time = 0.5
 autostart = true
 
 [node name="EntityPartHealth" parent="." instance=ExtResource( 3 )]

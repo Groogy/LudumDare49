@@ -12,11 +12,11 @@ func build() -> void:
 	
 
 func get_money_cost() -> float:
-	return 50.0
+	return 10.0
 
 
 func get_workers_cost() -> int:
-	return 5
+	return 1
 
 func generate_tooltip() -> String:
 	var tooltip = .generate_tooltip()

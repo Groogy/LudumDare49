@@ -3,7 +3,8 @@ extends Node2D
 
 const PossibleParts = [
 	preload("res://scenes/entities/SettlementUrbanPart.tscn"),
-	preload("res://scenes/entities/SettlementMarketPart.tscn")
+	preload("res://scenes/entities/SettlementMarketPart.tscn"),
+	preload("res://scenes/entities/SettlementFarmPart.tscn"),
 ]
 
 onready var SettlementGenerator = load("res://logic/generators/SettlementGenerator.gd")
