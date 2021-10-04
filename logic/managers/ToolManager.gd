@@ -12,6 +12,10 @@ func _ready() -> void:
 		child.visible = false
 
 
+func get_tool(flag: int):
+	return _tools[flag]
+
+
 func set_current_tool(var flag) -> void:
 	if current_tool != Const.Tool.NONE:
 		_tools[current_tool].visible = false

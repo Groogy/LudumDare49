@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://logic/interface/ConstructionLogic.gd" type="Script" id=1]
 [ext_resource path="res://art/coin.png" type="Texture" id=2]
 [ext_resource path="res://art/workers.png" type="Texture" id=3]
 [ext_resource path="res://logic/interface/ResourcesLogic.gd" type="Script" id=4]
+[ext_resource path="res://scenes/ConstructionTooltip.tscn" type="PackedScene" id=5]
 
 [node name="TopBarInterface" type="Panel"]
 anchor_right = 1.0
@@ -149,6 +150,10 @@ margin_right = 161.0
 margin_bottom = 52.0
 text = "Raise Land"
 
+[node name="ConstructionTooltip" parent="MarginContainer/AllContainer/ConstructionButtons/RaiseLand" instance=ExtResource( 5 )]
+position = Vector2( 1.98425, 53.9716 )
+tool_key = 1
+
 [node name="LowerLand" type="Button" parent="MarginContainer/AllContainer/ConstructionButtons"]
 margin_left = 165.0
 margin_right = 249.0
@@ -157,6 +162,10 @@ text = "Lower Land"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ConstructionTooltip" parent="MarginContainer/AllContainer/ConstructionButtons/LowerLand" instance=ExtResource( 5 )]
+position = Vector2( 1.98425, 53.9716 )
+tool_key = 2
 
 [node name="VSeparator2" type="VSeparator" parent="MarginContainer/AllContainer/ConstructionButtons"]
 margin_left = 253.0
@@ -169,17 +178,29 @@ margin_right = 355.0
 margin_bottom = 52.0
 text = "Flood Barrier"
 
+[node name="ConstructionTooltip" parent="MarginContainer/AllContainer/ConstructionButtons/FloodBarrier" instance=ExtResource( 5 )]
+position = Vector2( 1.98425, 53.9716 )
+tool_key = 3
+
 [node name="Pump" type="Button" parent="MarginContainer/AllContainer/ConstructionButtons"]
 margin_left = 359.0
 margin_right = 408.0
 margin_bottom = 52.0
 text = "Pump"
 
+[node name="ConstructionTooltip" parent="MarginContainer/AllContainer/ConstructionButtons/Pump" instance=ExtResource( 5 )]
+position = Vector2( 1.98425, 53.9716 )
+tool_key = 5
+
 [node name="Pipe" type="Button" parent="MarginContainer/AllContainer/ConstructionButtons"]
 margin_left = 412.0
 margin_right = 452.0
 margin_bottom = 52.0
 text = "Pipe"
+
+[node name="ConstructionTooltip" parent="MarginContainer/AllContainer/ConstructionButtons/Pipe" instance=ExtResource( 5 )]
+position = Vector2( 1.98425, 53.9716 )
+tool_key = 4
 
 [node name="Destroy" type="Button" parent="MarginContainer/AllContainer/ConstructionButtons"]
 margin_left = 456.0

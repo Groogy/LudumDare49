@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://logic/interface/TooltipBase.gd" type="Script" id=1]
+
+[node name="TooltipBase" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Panel" type="PanelContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 33.0
+margin_bottom = 33.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
