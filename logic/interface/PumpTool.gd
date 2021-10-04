@@ -8,7 +8,7 @@ func can_build() -> bool:
 
 func build() -> void:
 	Root.construction_manager.queue_construction(
-		cell_under_mouse, null, [],
+		cell_under_mouse, null, [], # Not giving the group to simplify pipes
 		 "construct_pump", "can_progress_pump",
 		get_money_cost(), get_workers_cost()
 	)

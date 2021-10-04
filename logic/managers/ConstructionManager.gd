@@ -119,12 +119,16 @@ func can_construct_pipe(cell: Vector2) -> bool:
 	
 
 func can_progress_pipe(cell: Vector2) -> bool:
-	return true
+	var part = Root.map_manager.entities.fetch_part_at(cell.x, cell.y)
+	if not part.is_in_group("pipe"): return false
+	return not part.connections.empty()
 
 
-func construct_pipe(cell: Vector2) -> void:
+func construct_pipe(cell: Vector2, money_cost: int, workers_cost: int) -> void:
+	Root.resources.money -= money_cost
 	var pipe := PipeScene.instance()
 	pipe.set_cell(cell)
+	pipe.needed_workers = workers_cost
 	var neighbor = Root.map_manager.entities.find_pipe_connection(cell.x, cell.y)
 	neighbor.get_parent().add_child(pipe)
 	pipe.connect_pipe(neighbor)
@@ -140,6 +144,9 @@ func can_construct_pump(cell: Vector2) -> bool:
 
 
 func can_progress_pump(cell: Vector2) -> bool:
+	var manager := Root.map_manager
+	if manager.water.has_water(cell.x, cell.y):
+		return false
 	return true
 
 

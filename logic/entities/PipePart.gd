@@ -2,9 +2,24 @@ extends "EntityPart.gd"
 
 var orientation: int = Const.PipeOrientations.HORIZONTAL setget set_orientation
 var connections := []
+var needed_workers := 0
+var provided_workers := 0
+var workers_on_the_way := 0
+
+
+func _process(_delta: float) -> void:
+	$Sprite.modulate = lerp(Color.black, Color.white, get_progress())
+
+
+func _physics_process(_delta: float) -> void:
+	if can_progress():
+		if need_more_workers():
+			pull_more_workers()
+	_purge_connections()
 
 
 func suck(strength: int):
+	if is_finished(): return
 	var to_check = [
 		Vector2(0, -1), Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0),
 		Vector2(0, 1)
@@ -25,11 +40,46 @@ func suck(strength: int):
 	water.add_water_level_at(random.x, random.y, -strength)
 
 
+func can_progress() -> bool:
+	return Root.construction_manager.can_progress_pipe(get_cell())
+
+
+func need_more_workers() -> bool:
+	return provided_workers + workers_on_the_way < needed_workers
+
+
+func pull_more_workers() -> void:
+	var providers = Root.map_manager.entities.fetch_all_parts_of("workers_provider")
+	providers.sort_custom(self, "provider_sort")
+	for provider in providers:
+		var given: int = provider.request_workers(self, needed_workers - provided_workers - workers_on_the_way)
+		workers_on_the_way += given
+		if not need_more_workers():
+			break
+
+func provider_sort(a, b) -> bool:
+	return abs(a.cell_x - cell_x) < abs(b.cell_x - cell_x)
+
+
+func worker_arrived() -> void:
+	provided_workers += 1
+	workers_on_the_way -= 1
+	.worker_arrived()
+
+
+func get_progress() -> float:
+	return float(provided_workers) / float(needed_workers)
+
+
+func is_finished() -> bool:
+	return provided_workers >= needed_workers
+
+
 func find_pump() -> EntityPart:
 	for child in get_parent().get_children():
 		if child.is_in_group("pump"):
 			return child
-	assert(false, "HOW? All pipes should connect to a pump")
+	# if no pump that means it is under construction
 	return null
 
 
@@ -108,3 +158,13 @@ func get_rect() -> Rect2:
 	var rect = $Sprite.get_rect()
 	rect.position += position
 	return rect
+
+
+func _purge_connections() -> void:
+	var to_remove := []
+	for connection in connections:
+		if not is_instance_valid(connection):
+			to_remove.push_back(connection)
+	for connection in to_remove:
+		connections.erase(connection)
+
