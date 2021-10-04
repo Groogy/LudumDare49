@@ -34,7 +34,7 @@ func generated_income() -> float:
 
 
 func generated_workers() -> int:
-	return int(5 * multiplier)
+	return int(3 * multiplier)
 
 
 func free_workers() -> int:

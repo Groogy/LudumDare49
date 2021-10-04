@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
 
 
 func lose_growth() -> void:
-	_current_growth_value = max(_current_growth_value-0.01, 0.0)
+	_current_growth_value = max(_current_growth_value-0.001, 0.0)
 
 
 func perform_growth_spurt() -> void:

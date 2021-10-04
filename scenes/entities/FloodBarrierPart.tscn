@@ -17,4 +17,4 @@ centered = false
 offset = Vector2( 0, -8 )
 
 [node name="EntityPartHealth" parent="." instance=ExtResource( 3 )]
-durability = 512
+durability = 32

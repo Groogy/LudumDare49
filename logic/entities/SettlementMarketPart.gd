@@ -24,11 +24,11 @@ func get_rect() -> Rect2:
 
 
 func generated_income() -> float:
-	return 25.0 * multiplier
+	return 20.0 * multiplier
 
 
 func generated_workers() -> int:
-	return int(1 * multiplier)
+	return int(0.5 * multiplier)
 
 
 func free_workers() -> int:

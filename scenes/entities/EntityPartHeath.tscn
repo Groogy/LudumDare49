@@ -17,3 +17,9 @@ polygon = PoolVector2Array( -7, -3, 7, -3, 8, -1, 8, 1, 7, 3, -7, 3, -8, 1, -8, 
 [node name="Green" type="Polygon2D" parent="Background"]
 color = Color( 0, 0.666667, 0, 1 )
 polygon = PoolVector2Array( -7, -3, 7, -3, 8, -1, 8, 1, 7, 3, -7, 3, -8, 1, -8, -1 )
+
+[node name="DamageTimer" type="Timer" parent="."]
+process_mode = 0
+autostart = true
+
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_tick"]

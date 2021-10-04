@@ -34,6 +34,12 @@ func get_rect() -> Rect2:
 	return Rect2(global_position, Vector2(16, 16))
 
 
+func worker_arrived() -> void:
+	for child in get_children():
+		if child.has_method("worker_arrived"):
+			child.worker_arrived()
+
+
 func destroy() -> void:
 	var parent = get_parent()
 	parent.remove_child(self)
