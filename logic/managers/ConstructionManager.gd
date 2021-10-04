@@ -53,7 +53,7 @@ func will_land_have_support(cell: Vector2, check_entities: bool = false) -> bool
 
 
 func can_lower_land(cell: Vector2) -> bool:
-	var manager := Root.map_manager
+	var manager = Root.map_manager
 	if manager.is_empty(cell.x, cell.y):
 		return false
 	if manager.water.has_water(cell.x, cell.y):
@@ -72,7 +72,7 @@ func can_lower_land(cell: Vector2) -> bool:
 
 
 func can_progress_lower_land(cell: Vector2) -> bool:
-	var manager := Root.map_manager
+	var manager = Root.map_manager
 	if manager.water.has_water(cell.x, cell.y):
 		return false
 	if not manager.is_empty(cell.x-1, cell.y-1) \
@@ -87,7 +87,7 @@ func lower_land(cell: Vector2) -> void:
 
 
 func can_construct_flood_barrier(cell: Vector2) -> bool:
-	var manager := Root.map_manager
+	var manager = Root.map_manager
 	if not manager.terrain.is_empty(cell.x, cell.y) or not manager.entities.is_empty(cell.x, cell.y):
 		return false
 	if not manager.terrain.is_filled(cell.x, cell.y+1) and not manager.entities.has_flood_barrier_at(cell.x, cell.y+1):
@@ -95,7 +95,7 @@ func can_construct_flood_barrier(cell: Vector2) -> bool:
 	return true
 
 func can_progress_flood_barrier(cell: Vector2) -> bool:
-	var manager := Root.map_manager
+	var manager = Root.map_manager
 	if not manager.terrain.is_filled(cell.x, cell.y+1) and not manager.entities.has_flood_barrier_at(cell.x, cell.y+1):
 		return false
 	return true
@@ -135,7 +135,7 @@ func construct_pipe(cell: Vector2, money_cost: int, workers_cost: int) -> void:
 
 
 func can_construct_pump(cell: Vector2) -> bool:
-	var manager := Root.map_manager
+	var manager = Root.map_manager
 	if not manager.is_empty(cell.x, cell.y):
 		return false
 	if not manager.terrain.is_filled(cell.x, cell.y+1):
@@ -144,7 +144,7 @@ func can_construct_pump(cell: Vector2) -> bool:
 
 
 func can_progress_pump(cell: Vector2) -> bool:
-	var manager := Root.map_manager
+	var manager = Root.map_manager
 	if manager.water.has_water(cell.x, cell.y):
 		return false
 	return true
