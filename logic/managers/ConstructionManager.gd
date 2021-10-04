@@ -25,11 +25,16 @@ func queue_construction(cell: Vector2, entity: Entity, groups: Array, build_call
 func can_raise_land(cell: Vector2) -> bool:
 	if not Root.map_manager.is_empty(cell.x, cell.y, false):
 		return false
-	if not will_land_have_support(cell):
+	if not will_land_have_support(cell, true):
 		return false
 	return true
 
+
 func can_progress_raise_land(cell: Vector2) -> bool:
+	if Root.map_manager.water.has_water(cell.x, cell.y):
+		return false
+	if not will_land_have_support(cell):
+		return false
 	return true
 
 
@@ -37,9 +42,12 @@ func raise_land(cell: Vector2) -> void:
 	Root.map_manager.fill_terrain_cell(cell)
 
 
-func will_land_have_support(cell: Vector2) -> bool:
+func will_land_have_support(cell: Vector2, check_entities: bool = false) -> bool:
 	var map: TileMap = Root.map_manager.terrain
-	if not map.is_filled(cell.x-1, cell.y+1) or not map.is_filled(cell.x+1, cell.y+1):
+	var entities = Root.map_manager.entities
+	if  (not map.is_filled(cell.x-1, cell.y+1) or not map.is_filled(cell.x+1, cell.y+1)) \
+	and (not check_entities or not entities.has_entity_part_at(cell.x-1, cell.y+1, "raised_land_construction") \
+		or not entities.has_entity_part_at(cell.x+1, cell.y+1, "raised_land_construction")):
 		return false
 		
 	return true
@@ -49,14 +57,30 @@ func can_lower_land(cell: Vector2) -> bool:
 	var manager := Root.map_manager
 	if manager.terrain.is_empty(cell.x, cell.y):
 		return false
-	if not manager.is_empty(cell.x-1, cell.y-1) \
-	or not manager.is_empty(cell.x, cell.y-1) \
-	or not manager.is_empty(cell.x+1, cell.y-1):
+		
+	if manager.water.has_water(cell.x, cell.y):
+		return false
+	
+	var terrain = manager.terrain
+	var entities = manager.entities
+	if (not terrain.is_empty(cell.x-1, cell.y-1) \
+	or not terrain.is_empty(cell.x, cell.y-1) \
+	or not terrain.is_empty(cell.x+1, cell.y-1)) and \
+	(not entities.has_entity_part_at(cell.x-1, cell.y-1, "lowered_land_construction") \
+	or not entities.has_entity_part_at(cell.x, cell.y-1, "lowered_land_construction") \
+	or not entities.has_entity_part_at(cell.x+1, cell.y-1, "lowered_land_construction")):
 		return false
 	return true
 
 
 func can_progress_lower_land(cell: Vector2) -> bool:
+	var manager := Root.map_manager
+	if manager.water.has_water(cell.x, cell.y):
+		return false
+	if not manager.is_empty(cell.x-1, cell.y-1) \
+	or not manager.is_empty(cell.x, cell.y-1) \
+	or not manager.is_empty(cell.x+1, cell.y-1):
+		return false
 	return true
 
 

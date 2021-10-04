@@ -22,7 +22,6 @@ func request_workers(source: EntityPart, target: EntityPart, count: int) -> void
 		data.target = target
 		queued_requests.push_back(data)
 	$DispatchTimer.start()
-	
 
 
 func _on_DispatchTimer_timeout():
