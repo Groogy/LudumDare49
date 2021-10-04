@@ -5,6 +5,7 @@ const FloodBarrierScene = preload("res://scenes/entities/FloodBarrierPart.tscn")
 const WindpumpScene = preload("res://scenes/entities/WindpumpPart.tscn")
 const PipeScene = preload("res://scenes/entities/PipePart.tscn")
 const ConstructionScene = preload("res://scenes/entities/ConstructionPart.tscn")
+const SettlementGenerator = preload("res://logic/generators/SettlementGenerator.gd")
 
 func queue_construction(cell: Vector2, entity: Entity, groups: Array, build_callback: String, can_build_callback: String, money_cost: float, manpower_cost: int) -> void:
 	var construction := ConstructionScene.instance()
@@ -130,6 +131,13 @@ func can_construct_settlement(cell: Vector2) -> bool:
 func can_progress_settlement(cell: Vector2) -> bool:
 	return true
 
+
+func construct_settlement(cell: Vector2) -> void:
+	var generator = SettlementGenerator.new()
+	generator.wanted_parts = ["urban"]
+	generator.start_x = cell.x
+	generator.start_y = cell.y
+	generator.build_entity(Root.map_manager.entities, Root.map_manager.terrain)
 
 
 func can_destroy_entity_part_at(cell: Vector2) -> bool:

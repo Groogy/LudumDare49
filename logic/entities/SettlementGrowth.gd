@@ -44,10 +44,10 @@ func settle_new_settlement() -> void:
 	if spot == Vector2(0, 0):
 		expand_settlement()
 	else:
-		generator.wanted_parts = ["urban"]
-		generator.start_x = spot.x
-		generator.start_y = spot.y
-		generator.build_entity(Root.map_manager.entities, Root.map_manager.terrain)
+		Root.construction_manager.queue_construction(
+			spot, null, [], 
+			"construct_settlement", "can_construct_settlement", 0, 10
+		)
 
 
 func expand_settlement() -> void:
