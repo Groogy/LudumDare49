@@ -23,5 +23,6 @@ autostart = true
 
 [node name="EntityPartHealth" parent="." instance=ExtResource( 3 )]
 durability = 16
+maintenance = 8
 
 [connection signal="timeout" from="SuckingTimer" to="." method="_on_sucking"]

@@ -14,7 +14,7 @@ func build() -> void:
 	)
 
 func get_money_cost() -> float:
-	return 500.0
+	return 200.0
 
 
 func get_workers_cost() -> int:

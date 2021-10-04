@@ -5,6 +5,7 @@ var health := 1.0
 var waiting_for_worker := false
 
 export var durability := 1
+export var maintenance := 0
 
 
 onready var _green_pos_cache: PoolVector2Array = $Background/Green.polygon
@@ -51,6 +52,7 @@ func worker_arrived() -> void:
 
 func _on_damage_tick():
 	var parent = get_parent()
+	if maintenance > 0: _update_damage(maintenance)
 	var water = Root.map_manager.water
 	var level = water.get_water_level_at(parent.cell_x-1, parent.cell_y)
 	level += water.get_water_level_at(parent.cell_x, parent.cell_y)
