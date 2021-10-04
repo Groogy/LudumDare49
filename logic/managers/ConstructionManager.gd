@@ -23,6 +23,9 @@ func can_raise_land(cell: Vector2) -> bool:
 		return false
 	return true
 
+func can_progress_raise_land(cell: Vector2) -> bool:
+	return true
+
 
 func raise_land(cell: Vector2) -> void:
 	Root.map_manager.fill_terrain_cell(cell)
@@ -47,6 +50,10 @@ func can_lower_land(cell: Vector2) -> bool:
 	return true
 
 
+func can_progress_lower_land(cell: Vector2) -> bool:
+	return true
+
+
 func lower_land(cell: Vector2) -> void:
 	Root.map_manager.empty_terrain_cell(cell)
 
@@ -58,6 +65,10 @@ func can_construct_flood_barrier(cell: Vector2) -> bool:
 	if not manager.terrain.is_filled(cell.x, cell.y+1) and not manager.entities.has_flood_barrier_at(cell.x, cell.y+1):
 		return false
 	return true
+
+func can_progress_flood_barrier(cell: Vector2) -> bool:
+	return true
+
 
 func construct_flood_barrier(cell: Vector2) -> void:
 	var barrier := FloodBarrierScene.instance()
@@ -75,7 +86,11 @@ func can_construct_pipe(cell: Vector2) -> bool:
 		
 	return entities.can_connect_pipe(cell.x, cell.y)
 	
-	
+
+func can_progress_pipe(cell: Vector2) -> bool:
+	return true
+
+
 func construct_pipe(cell: Vector2) -> void:
 	var pipe := PipeScene.instance()
 	pipe.set_cell(cell)
@@ -91,8 +106,12 @@ func can_construct_pump(cell: Vector2) -> bool:
 	if not manager.terrain.is_filled(cell.x, cell.y+1):
 		return false
 	return true
-	
-	
+
+
+func can_progress_pump(cell: Vector2) -> bool:
+	return true
+
+
 func construct_pump(cell: Vector2) -> void:
 	var pump := WindpumpScene.instance()
 	pump.set_cell(cell)

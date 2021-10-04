@@ -4,6 +4,7 @@ extends "EntityPart.gd"
 var build_callback := ""
 var can_build_callback := ""
 var needed_workers := 0
+var workers_on_the_way := 0
 var provided_workers := 0
 
 onready var _valuebar_pos_cache: PoolVector2Array = $ValueBar.polygon
@@ -17,8 +18,27 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if can_progress() and is_finished():
-		finish()
+	if can_progress():
+		if need_more_workers():
+			pull_more_workers()
+		if is_finished():
+			finish()
+
+
+func need_more_workers() -> bool:
+	return provided_workers + workers_on_the_way < needed_workers
+
+func pull_more_workers() -> void:
+	var providers = Root.map_manager.entities.fetch_all_parts_of("workers_provider")
+	providers.sort_custom(self, "provider_sort")
+	for provider in providers:
+		var given: int = provider.request_workers(needed_workers - provided_workers - workers_on_the_way)
+		workers_on_the_way += given
+		if not need_more_workers():
+			break
+
+func provider_sort(a, b) -> bool:
+	return abs(a.cell_x - cell_x) < abs(b.cell_x - cell_x)
 
 
 func get_rect() -> Rect2:

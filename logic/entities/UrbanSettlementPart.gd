@@ -41,6 +41,12 @@ func free_workers() -> int:
 	return $WorkersManager.free_workers
 
 
+func request_workers(var cap: int) -> int:
+	var amount: int = min(cap, $WorkersManager.free_workers)
+	$WorkersManager.free_workers -= amount
+	return amount
+
+
 func _update_info() -> void:
 	$Info/Container/VBox/Grid/MoneyValue.text = "+%.1f" % generated_income()
 	$Info/Container/VBox/Grid/WorkersValue.text = "+%d" % generated_workers()

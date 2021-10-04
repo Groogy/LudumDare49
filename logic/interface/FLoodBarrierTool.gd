@@ -11,7 +11,7 @@ func can_build() -> bool:
 
 func build() -> void:
 	Root.construction_manager.queue_construction(
-		cell_under_mouse, "construct_flood_barrier", "can_construct_flood_barrier",
+		cell_under_mouse, "construct_flood_barrier", "can_progress_flood_barrier",
 		MoneyCost, ManpowerCost
 	)
 
