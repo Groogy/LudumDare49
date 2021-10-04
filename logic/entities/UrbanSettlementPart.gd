@@ -45,6 +45,8 @@ func request_workers(var target: EntityPart, var cap: int) -> int:
 	var amount: int = min(cap, $WorkersManager.free_workers)
 	$WorkersManager.free_workers -= amount
 	if amount > 0:
+		var growth = get_parent().get_all_parts_in("settlement_growth")
+		growth.front().lose_growth()
 		Root.workers_dispatch.request_workers(self, target, amount)
 	return amount
 

@@ -16,6 +16,10 @@ func _process(_delta: float) -> void:
 		perform_growth_spurt()
 
 
+func lose_growth() -> void:
+	_current_growth_value = max(_current_growth_value-0.01, 0.0)
+
+
 func perform_growth_spurt() -> void:
 	_current_growth_value = 0.0
 	if randi() % 10 == 0:
