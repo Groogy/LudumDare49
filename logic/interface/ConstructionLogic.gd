@@ -1,6 +1,12 @@
 extends Node
 
 
+func _unhandled_input(event):
+	if event.is_action_pressed("game_unselect"):
+		_on_unselect()
+		get_tree().set_input_as_handled()
+
+
 func _on_unselect():
 	Root.tool_manager.current_tool = Const.Tool.NONE
 

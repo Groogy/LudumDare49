@@ -65,5 +65,5 @@ func can_progress() -> bool:
 
 
 func finish() -> void:
-	Root.construction_manager.call(build_callback, get_cell())
 	destroy()
+	Root.construction_manager.call(build_callback, get_cell())

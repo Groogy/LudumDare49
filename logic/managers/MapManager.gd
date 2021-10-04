@@ -25,7 +25,7 @@ func can_have_more_water(x: int, y: int) -> bool:
 
 
 func can_place_settlement_part_on(x: int, y: int) -> bool:
-	return entities.is_empty(x, y) and terrain.is_empty(x, y) and terrain.is_filled(x, y+1)
+	return is_empty(x, y) and terrain.is_filled(x, y+1)
 
 
 # Conversion

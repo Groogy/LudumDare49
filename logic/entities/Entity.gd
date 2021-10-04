@@ -27,10 +27,15 @@ func get_part_at(x: int, y: int) -> EntityPart:
 		if child.is_on(x, y):
 			return child
 	return null
-	
-	
+
+
+func get_first_entity_part() -> EntityPart:
+	for child in get_children():
+		if child.is_in_group("entity_part"): return child
+	return null
+
 func calc_bounding_box() -> Rect2:
-	var box: Rect2 = get_child(0).get_rect()
+	var box: Rect2 = get_first_entity_part().get_rect()
 	for child in get_children():
 		if not child.is_in_group("entity_part"):
 			continue

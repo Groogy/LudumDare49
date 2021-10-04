@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://scenes/HelpInfo.tscn" type="PackedScene" id=2]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 1 )
@@ -97,6 +98,10 @@ margin_bottom = 72.0
 max_value = 1.0
 step = 0.01
 value = 1.0
+
+[node name="HelpInfo" parent="CanvasLayer" instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 234.969, 102.314 )
 
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/CenterContainer/VBoxContainer/StartGame" to="." method="_on_StartGame_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/CenterContainer/VBoxContainer/Help" to="." method="_on_Help_pressed"]

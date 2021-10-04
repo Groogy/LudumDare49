@@ -12,7 +12,7 @@ func generate() -> void:
 		var level: int = water.find_water_surface(x)
 		if level < highest_water: highest_water = level
 		if surface < highest_water:
-			spot = find_empty_spot(3, x, x+10)
+			spot = find_empty_spot(3, x, x+10, terrain, entities)
 			if spot != Vector2(0, 0):
 				break
 	start_x = spot.x

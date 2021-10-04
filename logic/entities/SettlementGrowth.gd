@@ -30,18 +30,15 @@ func perform_growth_spurt() -> void:
 	_current_growth_value = 0.0
 	if randi() % 5 == 0:
 		settle_new_settlement()
-		# Found a new city
-		pass
 	elif randi() % 4 == 0:
 		expand_settlement()
-		pass
 	else:
 		increase_multiplier()
 
 
 func settle_new_settlement() -> void:
 	var generator = SettlementGenerator.new()
-	var spot = generator.find_good_spot(3)
+	var spot = generator.find_good_spot(3, Root.map_manager.entities, Root.map_manager.terrain)
 	if spot == Vector2(0, 0):
 		expand_settlement()
 	else:

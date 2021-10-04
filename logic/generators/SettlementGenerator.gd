@@ -50,11 +50,11 @@ func build_functional_parts() -> Array:
 	return parts
 
 
-func find_good_spot(var clearence: int) -> Vector2:
-	var other_settlements = get_parent().get_entities().fetch_all_parts_of("settlement_part")
-	var map_bounds = get_parent().get_terrain_map()
+func find_good_spot(var clearence: int, entities, terrain) -> Vector2:
+	var other_settlements = entities.fetch_all_parts_of("settlement_part")
+	var map_bounds = terrain.map_bounds
 	for try in 5: # Let's try and find a spot 5 times:
-		var spot = find_empty_spot(clearence, map_bounds.position.x + randi() % int(map_bounds.size.x), 10)
+		var spot = find_empty_spot(clearence, map_bounds.position.x + randi() % int(map_bounds.size.x), 10, terrain, entities)
 		if spot != Vector2(0, 0):
 			var nearest := 99999
 			for other in other_settlements:
@@ -65,10 +65,7 @@ func find_good_spot(var clearence: int) -> Vector2:
 	return Vector2(0, 0)
 
 
-func find_empty_spot(var clearence: int, area_start: int, area_end: int) -> Vector2:
-	var parent := get_parent()
-	var terrain = parent.get_terrain_map()
-	var entities = parent.get_entities()
+func find_empty_spot(var clearence: int, area_start: int, area_end: int, terrain, entities) -> Vector2:
 	var is_empty := false
 	var x: int = 0
 	var y: int = 0

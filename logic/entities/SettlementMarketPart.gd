@@ -40,7 +40,7 @@ func request_workers(var target: EntityPart, var cap: int) -> int:
 	$WorkersManager.free_workers -= amount
 	if amount > 0:
 		var growth = get_parent().get_all_parts_in("settlement_growth")
-		growth.front().lose_growth()
+		growth.front().lose_growth(amount)
 		Root.workers_dispatch.request_workers(self, target, amount)
 	return amount
 

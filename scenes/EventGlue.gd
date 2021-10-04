@@ -37,16 +37,15 @@ func severe_storm_over():
 
 func tulip_craze():
 	Root.resources.income_multiplier += 2.0
-
+	$"../TulipCraze/Timer".start()
 
 func tulip_craze_over():
 	Root.resources.income_multiplier -= 2.0
 
 
-
 func tulip_crash():
 	Root.resources.income_divider += 4.0
-
+	$"../TulipCrash/Timer".start()
 
 func tulip_crash_over():
 	Root.resources.income_divider -= 4.0
