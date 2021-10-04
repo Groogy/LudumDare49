@@ -26,7 +26,9 @@ func on_reached(current_cell) -> void:
 func update_movement(current_cell, delta) -> void:
 	var dir = sign(target.cell_x-current_cell.x)
 	var next_cell = current_cell + Vector2(dir, 0)
+	next_cell.y = Root.map_manager.terrain.find_surface(next_cell.x) - 1
+	if next_cell.y > current_cell.y and Root.map_manager.terrain.is_partial(next_cell.x, next_cell.y):
+		next_cell.y -= 1
 	var next_pos = Root.map_manager.map_to_world(next_cell)
-	var surface = Root.map_manager.terrain.find_surface(next_cell.x)
 	position.x += MovementSpeed * dir * delta
-	position.y = lerp(position.y, next_pos.y, abs(next_pos.x-position.x)/16.0)
+	position.y = lerp(position.y, next_pos.y, next_pos.x/position.x/16.0)
