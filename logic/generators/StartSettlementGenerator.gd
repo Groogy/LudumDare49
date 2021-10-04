@@ -7,7 +7,7 @@ func generate() -> void:
 	var water = parent.get_water_map()
 	var spot = null
 	var highest_water := 0
-	for x in range(terrain.map_bounds.position.x, terrain.map_bounds.size.x):
+	for x in range(terrain.map_bounds.position.x, terrain.map_bounds.size.x - 5):
 		var surface: int = terrain.find_surface(x)
 		var level: int = water.find_water_surface(x)
 		if level < highest_water: highest_water = level
