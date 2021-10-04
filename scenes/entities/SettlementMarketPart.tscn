@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://art/market.png" type="Texture" id=1]
 [ext_resource path="res://logic/entities/SettlementMarketPart.gd" type="Script" id=2]
 [ext_resource path="res://scenes/WorkersManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://art/workers_small.png" type="Texture" id=4]
 [ext_resource path="res://art/coin_small.png" type="Texture" id=5]
+[ext_resource path="res://scenes/entities/EntityPartHeath.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -26,6 +27,9 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
+
+[node name="EntityPartHealth" parent="." instance=ExtResource( 6 )]
+durability = 16
 
 [node name="WorkersManager" parent="." instance=ExtResource( 3 )]
 

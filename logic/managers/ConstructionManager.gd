@@ -118,6 +118,15 @@ func construct_pump(cell: Vector2) -> void:
 	Root.map_manager.entities.create_entity([pump])
 
 
+func can_construct_settlement(cell: Vector2) -> bool:
+	return true
+
+
+func can_progress_settlement(cell: Vector2) -> bool:
+	return true
+
+
+
 func can_destroy_entity_part_at(cell: Vector2) -> bool:
 	var entities = Root.map_manager.entities
 	var part = entities.fetch_part_at(cell.x, cell.y)

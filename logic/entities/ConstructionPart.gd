@@ -44,6 +44,7 @@ func provider_sort(a, b) -> bool:
 func worker_arrived() -> void:
 	provided_workers += 1
 	workers_on_the_way -= 1
+	.worker_arrived()
 
 
 func get_rect() -> Rect2:
