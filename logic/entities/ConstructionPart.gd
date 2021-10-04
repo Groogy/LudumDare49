@@ -32,7 +32,7 @@ func pull_more_workers() -> void:
 	var providers = Root.map_manager.entities.fetch_all_parts_of("workers_provider")
 	providers.sort_custom(self, "provider_sort")
 	for provider in providers:
-		var given: int = provider.request_workers(needed_workers - provided_workers - workers_on_the_way)
+		var given: int = provider.request_workers(self, needed_workers - provided_workers - workers_on_the_way)
 		workers_on_the_way += given
 		if not need_more_workers():
 			break

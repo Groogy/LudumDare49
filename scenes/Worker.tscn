@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://logic/Worker.gd" type="Script" id=1]
+
+[node name="Worker" type="Polygon2D"]
+color = Color( 0, 0, 0, 1 )
+offset = Vector2( 0, 14 )
+polygon = PoolVector2Array( -2, -2, 2, -2, 2, 2, -2, 2 )
+script = ExtResource( 1 )

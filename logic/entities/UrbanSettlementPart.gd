@@ -41,9 +41,11 @@ func free_workers() -> int:
 	return $WorkersManager.free_workers
 
 
-func request_workers(var cap: int) -> int:
+func request_workers(var target: EntityPart, var cap: int) -> int:
 	var amount: int = min(cap, $WorkersManager.free_workers)
 	$WorkersManager.free_workers -= amount
+	if amount > 0:
+		Root.workers_dispatch.request_workers(self, target, amount)
 	return amount
 
 

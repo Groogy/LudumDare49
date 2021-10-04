@@ -45,6 +45,10 @@ func get_all_parts_in(group: String) -> Array:
 	return parts
 
 
+func worker_arrived() -> void:
+	pass
+
+
 func check_destroyed() -> void:
 	if get_child_count() <= 0:
 		queue_free()
