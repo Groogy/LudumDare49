@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/light_rain.wav-fefe98e1d680f3002214225b2e47643d.sample"
+
+[deps]
+
+source_file="res://sound/light_rain.wav"
+dest_files=[ "res://.import/light_rain.wav-fefe98e1d680f3002214225b2e47643d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

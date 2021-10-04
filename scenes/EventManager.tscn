@@ -57,8 +57,30 @@ one_shot = true
 
 [node name="BabyBoom" type="Node" parent="."]
 script = ExtResource( 2 )
+text = "BABY BOOM
+The Dutch are getting funky. More workers will be available."
 
 [node name="Timer" type="Timer" parent="BabyBoom"]
+process_mode = 0
+wait_time = 60.0
+one_shot = true
+
+[node name="TulipCraze" type="Node" parent="."]
+script = ExtResource( 2 )
+text = "TULIP CRAZE
+The Dutch have gone crazy speculating on tulips! You will earn more income"
+
+[node name="Timer" type="Timer" parent="TulipCraze"]
+process_mode = 0
+wait_time = 60.0
+one_shot = true
+
+[node name="TulipCrash" type="Node" parent="."]
+script = ExtResource( 2 )
+text = "TULIP CRASH
+Apparently speculating on Tulips is not that great. You will earn less income."
+
+[node name="Timer" type="Timer" parent="TulipCrash"]
 process_mode = 0
 wait_time = 60.0
 one_shot = true
@@ -71,3 +93,7 @@ one_shot = true
 [connection signal="timeout" from="SevereStorm/Timer" to="EventGlue" method="severe_storm_over"]
 [connection signal="event_triggered" from="BabyBoom" to="EventGlue" method="baby_boom"]
 [connection signal="timeout" from="BabyBoom/Timer" to="EventGlue" method="baby_boom_over"]
+[connection signal="event_triggered" from="TulipCraze" to="EventGlue" method="tulip_craze"]
+[connection signal="timeout" from="TulipCraze/Timer" to="EventGlue" method="tulip_craze_over"]
+[connection signal="event_triggered" from="TulipCrash" to="EventGlue" method="tulip_crash"]
+[connection signal="timeout" from="TulipCrash/Timer" to="EventGlue" method="tulip_crash_over"]

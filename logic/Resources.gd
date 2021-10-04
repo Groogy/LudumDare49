@@ -8,6 +8,9 @@ var income := 0.0
 var workers_growth := 0
 var city_growth := 0.0
 
+var income_multiplier := 1.0
+var income_divider := 1.0
+
 
 func _process(_delta: float) -> void:
 	_update_available_workers()
@@ -28,6 +31,9 @@ func _update_income() -> void:
 	income = 0.0
 	for part in parts:
 		income += part.generated_income()
+		
+	income *= income_multiplier
+	income /= income_divider
 
 
 func _update_workers_growth() -> void:

@@ -34,3 +34,20 @@ func severe_storm():
 func severe_storm_over():
 	Root.map_manager.water.intensity -= 8
 	Root.effects.add_storm_intensity(0.8)
+
+
+func tulip_craze():
+	Root.resources.income_multiplier += 2.0
+
+
+func tulip_craze_over():
+	Root.resources.income_multiplier -= 2.0
+
+
+
+func tulip_crash():
+	Root.resources.income_divider += 4.0
+
+
+func tulip_crash_over():
+	Root.resources.income_divider -= 4.0

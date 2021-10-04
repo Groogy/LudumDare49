@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/heavy_rain.wav-67805c84263f17cd1c7046f6000f261f.sample"
+
+[deps]
+
+source_file="res://sound/heavy_rain.wav"
+dest_files=[ "res://.import/heavy_rain.wav-67805c84263f17cd1c7046f6000f261f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

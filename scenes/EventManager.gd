@@ -7,8 +7,8 @@ var show_log := false
 var time_log_shown := 0.0
 
 func _ready() -> void:
-	$EventLog.modulate = Color.transparent
 	$SevereStorm.trigger()
+	$EventLog.modulate = Color.transparent
 
 
 func _process(delta: float):

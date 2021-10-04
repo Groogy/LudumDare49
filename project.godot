@@ -42,6 +42,7 @@ Root="*res://singletons/Root.gd"
 Const="*res://singletons/Const.gd"
 Names="*res://singletons/Names.gd"
 Helpers="*res://singletons/Helpers.gd"
+BackgroundMusic="*res://scenes/BackgroundMusic.tscn"
 
 [debug]
 
