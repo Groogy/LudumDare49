@@ -46,7 +46,9 @@ func get_all_parts_in(group: String) -> Array:
 
 
 func worker_arrived() -> void:
-	pass
+	for child in get_children():
+		if child.has_method("worker_arrived"):
+			child.worker_arrived()
 
 
 func check_destroyed() -> void:

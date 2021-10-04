@@ -1,6 +1,6 @@
 extends Node
 
-var free_workers := 0
+onready var free_workers: int = get_parent().generated_workers()
 
 func on_growth() -> void:
 	free_workers += get_parent().generated_workers()

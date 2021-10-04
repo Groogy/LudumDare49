@@ -29,4 +29,4 @@ func update_movement(current_cell, delta) -> void:
 	var next_pos = Root.map_manager.map_to_world(next_cell)
 	var surface = Root.map_manager.terrain.find_surface(next_cell.x)
 	position.x += MovementSpeed * dir * delta
-	position.y = lerp(current_cell.y, next_cell.y, abs(next_pos.x-position.x)/16.0)
+	position.y = lerp(position.y, next_pos.y, abs(next_pos.x-position.x)/16.0)

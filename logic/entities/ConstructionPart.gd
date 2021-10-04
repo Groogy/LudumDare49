@@ -41,6 +41,11 @@ func provider_sort(a, b) -> bool:
 	return abs(a.cell_x - cell_x) < abs(b.cell_x - cell_x)
 
 
+func worker_arrived() -> void:
+	provided_workers += 1
+	workers_on_the_way -= 1
+
+
 func get_rect() -> Rect2:
 	var rect = $Sprite.get_rect()
 	rect.position += position
