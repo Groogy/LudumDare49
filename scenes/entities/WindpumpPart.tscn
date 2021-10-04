@@ -18,7 +18,8 @@ centered = false
 offset = Vector2( 0, -16 )
 
 [node name="SuckingTimer" type="Timer" parent="."]
-wait_time = 0.1
+process_mode = 0
+wait_time = 0.25
 autostart = true
 
 [node name="EntityPartHealth" parent="." instance=ExtResource( 3 )]

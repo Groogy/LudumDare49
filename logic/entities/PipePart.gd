@@ -19,7 +19,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func suck(strength: int):
-	if is_finished(): return
+	if not is_finished(): return
 	var to_check = [
 		Vector2(0, -1), Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0),
 		Vector2(0, 1)
