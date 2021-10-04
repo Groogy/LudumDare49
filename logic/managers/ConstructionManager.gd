@@ -73,6 +73,9 @@ func can_construct_flood_barrier(cell: Vector2) -> bool:
 	return true
 
 func can_progress_flood_barrier(cell: Vector2) -> bool:
+	var manager := Root.map_manager
+	if not manager.terrain.is_filled(cell.x, cell.y+1) and not manager.entities.has_flood_barrier_at(cell.x, cell.y+1):
+		return false
 	return true
 
 

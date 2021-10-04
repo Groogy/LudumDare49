@@ -5,6 +5,7 @@
 [ext_resource path="res://scenes/entities/EntityPartHeath.tscn" type="PackedScene" id=3]
 
 [node name="FloodBarrierPart" type="Node2D" groups=[
+"blocks_water",
 "entity_part",
 "flood_barrier",
 "player_constructed",

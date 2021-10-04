@@ -15,7 +15,7 @@ func is_empty(x: int, y: int) -> bool:
 
 
 func is_water_blocked(x: int, y: int) -> bool:
-	return has_flood_barrier_at(x, y)
+	return has_entity_part_at(x, y, "blocks_water")
 
 
 func has_entity_part_at(x: int, y: int, group: String) -> bool:
