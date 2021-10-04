@@ -20,7 +20,7 @@ func is_empty(x: int, y: int, include_partial: bool = true) -> bool:
 func can_have_more_water(x: int, y: int) -> bool:
 	return 	is_within_bounds(x, y) \
 		and (terrain.is_empty(x, y) or terrain.is_partial(x, y)) \
-		and water.get_water_level_at(x, y) < water.get_max_water_level() \
+		and water.get_water_level_at(x, y) < Const.MAX_WATER_LEVEL \
 		and not entities.is_water_blocked(x, y)
 
 

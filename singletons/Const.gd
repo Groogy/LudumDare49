@@ -26,3 +26,5 @@ enum Tool {
 	PUMP
 	DESTROY
 }
+
+const MAX_WATER_LEVEL = 16

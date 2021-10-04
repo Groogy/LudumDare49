@@ -26,9 +26,11 @@ func generate() -> void:
 	for x in range(parent.target_area.position.x, parent.target_area.end.x):
 		levels.append(current_y)
 		if current_y > highest: highest = current_y
-		if x == 32 or x == 64: min_y /= 2
 		if count <= 0 and randi() % 3 == 0: # Should we change level?
-			current_y = max(current_y + randi() % 3 - 1, min_y)
+			if randi() % 3 == 0:
+				current_y = max(current_y + randi() % 3 - 1, min_y)
+			else:
+				current_y = current_y + randi() % 2
 			count = 6
 		else:
 			count -= 1

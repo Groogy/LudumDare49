@@ -1,14 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://logic/generators/WorldGenerator.gd" type="Script" id=1]
 [ext_resource path="res://logic/generators/TerrainGenerator.gd" type="Script" id=2]
 [ext_resource path="res://logic/generators/StartSettlementGenerator.gd" type="Script" id=3]
+[ext_resource path="res://logic/generators/WaterGenerator.gd" type="Script" id=4]
 
 [node name="WorldGenerator" type="Node2D"]
 script = ExtResource( 1 )
+start_y = 16
 
 [node name="TerrainGenerator" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
 [node name="StartSettlementGenerator" type="Node2D" parent="."]
 script = ExtResource( 3 )
+
+[node name="WaterGenerator" type="Node2D" parent="."]
+script = ExtResource( 4 )
