@@ -82,3 +82,16 @@ func _update_value_bar() -> void:
 func _on_growth():
 	_current_growth_value += 0.01
 
+
+
+func _on_Area2D_mouse_entered():
+	$Panel.visible = true
+
+
+func _on_Area2D_mouse_exited():
+	$Panel.visible = false
+
+
+func _on_pay_for_growth():
+	Root.resources.money -= 100
+	_current_growth_value += 0.05
