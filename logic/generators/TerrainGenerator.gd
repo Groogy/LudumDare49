@@ -20,18 +20,18 @@ func generate() -> void:
 	var current_y = parent.start_y
 	var prevous_y = current_y
 	var min_y = parent.start_y
-	var count := 10
+	var count := 2
 	var highest = 0
 	var levels := []
 	for x in range(parent.target_area.position.x, parent.target_area.end.x):
 		levels.append(current_y)
 		if current_y > highest: highest = current_y
 		if count <= 0 and randi() % 3 == 0: # Should we change level?
-			if randi() % 3 == 0:
+			if randi() % 2 == 0:
 				current_y = max(current_y + randi() % 3 - 1, min_y)
 			else:
 				current_y = current_y + randi() % 2
-			count = 6
+			count = 2
 		else:
 			count -= 1
 	

@@ -11,6 +11,6 @@ func generate() -> void:
 	var water_level: int = water.inject_water_pos.y
 	for x in range(terrain.map_bounds.position.x, terrain.map_bounds.end.x):
 		var surface: int = terrain.find_surface(x)
-		if surface < water_level: break
+		if surface <= water_level: break
 		for y in range(surface, water_level, -1):
 			water.set_water_level_at(x, y, Const.MAX_WATER_LEVEL)
