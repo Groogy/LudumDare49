@@ -25,11 +25,12 @@ func request_workers(source: EntityPart, target: EntityPart, count: int) -> void
 
 
 func _on_DispatchTimer_timeout():
-	if queued_requests.empty(): return
-	var data = queued_requests.pop_front()
-	if not data.is_valid(): return
-	var worker := WorkerScene.instance()
-	worker.position = Root.map_manager.map_to_world(data.source.get_cell())
-	worker.target = data.target
-	add_child(worker)
-	$DispatchTimer.start()
+	while not queued_requests.empty():
+		var data = queued_requests.pop_front()
+		if not data.is_valid(): continue
+		var worker := WorkerScene.instance()
+		worker.position = Root.map_manager.map_to_world(data.source.get_cell())
+		worker.target = data.target
+		add_child(worker)
+		$DispatchTimer.start()
+		break
