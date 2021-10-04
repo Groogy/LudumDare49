@@ -33,6 +33,7 @@ color = Color( 0.647059, 0.823529, 0.956863, 1 )
 
 [node name="Wind" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "Wind"
 
 [node name="HeavyRain" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
