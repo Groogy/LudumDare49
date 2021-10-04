@@ -49,6 +49,15 @@ func get_workers_cost() -> int:
 	return 0
 
 
+func generate_tooltip() -> String:
+	if Root.resources.money < get_money_cost():
+		return "Can't afford this!"
+	elif not Root.map_manager.entities.is_empty(cell_under_mouse.x, cell_under_mouse.y):
+		return "Already something in this tile"
+	else:
+		return ""
+
+
 func _update_mouse_position() -> void:
 	cell_under_mouse = Root.map_manager.world_to_map(get_global_mouse_position())
 	global_position = Root.map_manager.map_to_world(cell_under_mouse) # Snap to grid

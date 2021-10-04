@@ -1,8 +1,13 @@
 extends Node2D
 
+
+export var connect_to_parent := true
+
+
 func _ready() -> void:
-	get_parent().connect("mouse_entered", self, "_on_mouse_entered")
-	get_parent().connect("mouse_exited", self, "_on_mouse_exited")
+	if connect_to_parent:
+		get_parent().connect("mouse_entered", self, "_on_mouse_entered")
+		get_parent().connect("mouse_exited", self, "_on_mouse_exited")
 	visible = false
 
 

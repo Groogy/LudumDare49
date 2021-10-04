@@ -19,3 +19,10 @@ func get_money_cost() -> float:
 
 func get_workers_cost() -> int:
 	return 5
+
+func generate_tooltip() -> String:
+	var tooltip = .generate_tooltip()
+	if not tooltip.empty(): return tooltip
+	if not Root.construction_manager.can_construct_pipe(cell_under_mouse):
+		return "Can't build Pipe here"
+	return ""

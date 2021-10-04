@@ -19,3 +19,10 @@ func get_money_cost() -> float:
 
 func get_workers_cost() -> int:
 	return 250
+
+func generate_tooltip() -> String:
+	var tooltip = .generate_tooltip()
+	if not tooltip.empty(): return tooltip
+	if not Root.construction_manager.can_lower_land(cell_under_mouse):
+		return "Can't lower land here"
+	return ""

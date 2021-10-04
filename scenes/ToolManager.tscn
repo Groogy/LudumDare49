@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://logic/managers/ToolManager.gd" type="Script" id=1]
 [ext_resource path="res://logic/interface/RaiseLandTool.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://logic/interface/PipeTool.gd" type="Script" id=5]
 [ext_resource path="res://logic/interface/PumpTool.gd" type="Script" id=6]
 [ext_resource path="res://logic/interface/DestroyTool.gd" type="Script" id=7]
+[ext_resource path="res://scenes/ToolTooltip.tscn" type="PackedScene" id=8]
 
 [node name="ToolManager" type="Node"]
 script = ExtResource( 1 )
@@ -14,17 +15,29 @@ script = ExtResource( 1 )
 [node name="RaiseLandTool" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
+[node name="ToolTooltip" parent="RaiseLandTool" instance=ExtResource( 8 )]
+
 [node name="LowerLandTool" type="Node2D" parent="."]
 script = ExtResource( 3 )
+
+[node name="ToolTooltip" parent="LowerLandTool" instance=ExtResource( 8 )]
 
 [node name="FloodBarrierTool" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
+[node name="ToolTooltip" parent="FloodBarrierTool" instance=ExtResource( 8 )]
+
 [node name="PipeTool" type="Node2D" parent="."]
 script = ExtResource( 5 )
+
+[node name="ToolTooltip" parent="PipeTool" instance=ExtResource( 8 )]
 
 [node name="PumpTool" type="Node2D" parent="."]
 script = ExtResource( 6 )
 
+[node name="ToolTooltip" parent="PumpTool" instance=ExtResource( 8 )]
+
 [node name="DestroyTool" type="Node2D" parent="."]
 script = ExtResource( 7 )
+
+[node name="ToolTooltip" parent="DestroyTool" instance=ExtResource( 8 )]
