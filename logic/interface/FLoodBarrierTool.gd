@@ -12,6 +12,7 @@ func can_build() -> bool:
 func build() -> void:
 	var entity: Entity = Root.map_manager.entities.fetch_entity_at(cell_under_mouse.x, cell_under_mouse.y + 1)
 	Root.construction_manager.queue_construction(
-		cell_under_mouse, entity, "construct_flood_barrier", "can_progress_flood_barrier",
+		cell_under_mouse, entity, ["flood_barrier"],
+		 "construct_flood_barrier", "can_progress_flood_barrier",
 		MoneyCost, ManpowerCost
 	)

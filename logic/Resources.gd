@@ -1,7 +1,7 @@
 extends Node
 
 
-var money := 250.0
+var money := 300.0
 var available_workers := 0
 
 var income := 0.0

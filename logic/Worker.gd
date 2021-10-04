@@ -17,9 +17,7 @@ func _physics_process(delta: float):
 		update_movement(current_cell, delta)
 
 func on_reached(current_cell) -> void:
-	var entity = target.get_parent()
-	if entity:
-		entity.worker_arrived()
+	target.worker_arrived()
 	queue_free()
 
 
