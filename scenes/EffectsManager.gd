@@ -51,12 +51,13 @@ func _update_lerped_storm_values(val: float) -> void:
 
 func _update_storm_values() -> void:
 	if storm_intensity <= 0.0:
-		$RainParticles.visible = false
 		$RainParticles.amount = 0
+		$RainParticles.emitting = false
 	else:
-		if not $RainParticles.visible: $RainParticles.visible = true
+		if not $RainParticles.emitting: $RainParticles.emitting = true
 		var amount = lerp(0, 10000, storm_intensity)
 		if $RainParticles.amount != amount:
+			
 			$RainParticles.amount = amount
 			$RainParticles.initial_velocity = lerp(0, 600, storm_intensity)
 
