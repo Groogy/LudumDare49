@@ -45,30 +45,28 @@ func raise_land(cell: Vector2) -> void:
 func will_land_have_support(cell: Vector2, check_entities: bool = false) -> bool:
 	var map: TileMap = Root.map_manager.terrain
 	var entities = Root.map_manager.entities
-	if  (not map.is_filled(cell.x-1, cell.y+1) or not map.is_filled(cell.x+1, cell.y+1)) \
-	and (not check_entities or not entities.has_entity_part_at(cell.x-1, cell.y+1, "raised_land_construction") \
-		or not entities.has_entity_part_at(cell.x+1, cell.y+1, "raised_land_construction")):
+	var has_support: bool = map.is_filled(cell.x-1, cell.y+1) or (check_entities and entities.has_entity_part_at(cell.x-1, cell.y+1, "raised_land_construction"))
+	has_support = has_support and map.is_filled(cell.x+1, cell.y+1) or (check_entities and entities.has_entity_part_at(cell.x+1, cell.y+1, "raised_land_construction"))
+	if not has_support:
 		return false
-		
 	return true
 
 
 func can_lower_land(cell: Vector2) -> bool:
 	var manager := Root.map_manager
-	if manager.terrain.is_empty(cell.x, cell.y):
+	if manager.is_empty(cell.x, cell.y):
 		return false
-		
 	if manager.water.has_water(cell.x, cell.y):
+		return false
+	if manager.entities.has_entity_part_at(cell.x, cell.y, ""):
 		return false
 	
 	var terrain = manager.terrain
 	var entities = manager.entities
-	if (not terrain.is_empty(cell.x-1, cell.y-1) \
-	or not terrain.is_empty(cell.x, cell.y-1) \
-	or not terrain.is_empty(cell.x+1, cell.y-1)) and \
-	(not entities.has_entity_part_at(cell.x-1, cell.y-1, "lowered_land_construction") \
-	or not entities.has_entity_part_at(cell.x, cell.y-1, "lowered_land_construction") \
-	or not entities.has_entity_part_at(cell.x+1, cell.y-1, "lowered_land_construction")):
+	var has_support: bool = terrain.is_empty(cell.x-1, cell.y-1) or entities.has_entity_part_at(cell.x-1, cell.y-1, "lowered_land_construction")
+	has_support = has_support and terrain.is_empty(cell.x, cell.y-1) or entities.has_entity_part_at(cell.x, cell.y-1, "lowered_land_construction")
+	has_support = has_support and terrain.is_empty(cell.x+1, cell.y-1) or entities.has_entity_part_at(cell.x+1, cell.y-1, "lowered_land_construction")
+	if not has_support:
 		return false
 	return true
 
